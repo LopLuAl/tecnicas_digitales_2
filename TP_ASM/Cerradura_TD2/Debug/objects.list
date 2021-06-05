@@ -1,0 +1,5 @@
+"Src/antirrebote.o"
+"Src/lectura_teclado.o"
+"Src/led.o"
+"Src/main.o"
+"Startup/startup_stm32f103c8tx.o"

@@ -1,0 +1,315 @@
+13:45:08 **** Incremental Build of configuration Debug for project led_blinky ****
+make -j8 all 
+arm-none-eabi-gcc "../Drivers/KS0108-STM32.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/KS0108-STM32.d" -MT"Drivers/KS0108-STM32.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/KS0108-STM32.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+In file included from ../Core/Src/main.c:21:
+../Core/Inc/main.h:35:10: fatal error: ./Drivers/KS0108.h: No such file or directory
+   35 | #include <./Drivers/KS0108.h>
+      |          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Core/Src/stm32f1xx_it.c:22:
+../Core/Inc/main.h:35:10: fatal error: ./Drivers/KS0108.h: No such file or directory
+   35 | #include <./Drivers/KS0108.h>
+      |          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Core/Src/stm32f1xx_hal_msp.c:23:
+../Core/Inc/main.h:35:10: fatal error: ./Drivers/KS0108.h: No such file or directory
+   35 | #include <./Drivers/KS0108.h>
+      |          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Core/Src/subdir.mk:36: Core/Src/stm32f1xx_hal_msp.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+make: *** [Core/Src/subdir.mk:38: Core/Src/stm32f1xx_it.o] Error 1
+In file included from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:1144,
+                 from ../Core/Inc/stm32f1xx_hal_conf.h:237,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h:1859:1: error: unknown type name 'HAL_StatusTypeDef'
+ 1859 | HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(RCC_PeriphCLKInitTypeDef  *PeriphClkInit);
+      | ^~~~~~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:237,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:1156:1: error: unknown type name 'HAL_StatusTypeDef'
+ 1156 | HAL_StatusTypeDef HAL_RCC_DeInit(void);
+      | ^~~~~~~~~~~~~~~~~
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:1157:1: error: unknown type name 'HAL_StatusTypeDef'
+ 1157 | HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef  *RCC_OscInitStruct);
+      | ^~~~~~~~~~~~~~~~~
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:1158:1: error: unknown type name 'HAL_StatusTypeDef'
+ 1158 | HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, uint32_t FLatency);
+      | ^~~~~~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:245,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h:279:1: error: unknown type name 'HAL_StatusTypeDef'
+  279 | HAL_StatusTypeDef HAL_EXTI_SetConfigLine(EXTI_HandleTypeDef *hexti, EXTI_ConfigTypeDef *pExtiConfig);
+      | ^~~~~~~~~~~~~~~~~
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h:280:1: error: unknown type name 'HAL_StatusTypeDef'
+  280 | HAL_StatusTypeDef HAL_EXTI_GetConfigLine(EXTI_HandleTypeDef *hexti, EXTI_ConfigTypeDef *pExtiConfig);
+      | ^~~~~~~~~~~~~~~~~
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h:281:1: error: unknown type name 'HAL_StatusTypeDef'
+  281 | HAL_StatusTypeDef HAL_EXTI_ClearConfigLine(EXTI_HandleTypeDef *hexti);
+      | ^~~~~~~~~~~~~~~~~
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h:282:1: error: unknown type name 'HAL_StatusTypeDef'
+  282 | HAL_StatusTypeDef HAL_EXTI_RegisterCallback(EXTI_HandleTypeDef *hexti, EXTI_CallbackIDTypeDef CallbackID, void (*pPendingCbfn)(void));
+      | ^~~~~~~~~~~~~~~~~
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h:283:1: error: unknown type name 'HAL_StatusTypeDef'
+  283 | HAL_StatusTypeDef HAL_EXTI_GetHandle(EXTI_HandleTypeDef *hexti, uint32_t ExtiLine);
+      | ^~~~~~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:249,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:117:3: error: unknown type name 'HAL_LockTypeDef'
+  117 |   HAL_LockTypeDef       Lock;                            /*!< DMA locking object                     */
+      |   ^~~~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:249,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:367:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  367 | HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef *hdma);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:368:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  368 | HAL_StatusTypeDef HAL_DMA_DeInit (DMA_HandleTypeDef *hdma);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:377:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  377 | HAL_StatusTypeDef HAL_DMA_Start (DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:378:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  378 | HAL_StatusTypeDef HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:379:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  379 | HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:380:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  380 | HAL_StatusTypeDef HAL_DMA_Abort_IT(DMA_HandleTypeDef *hdma);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:381:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  381 | HAL_StatusTypeDef HAL_DMA_PollForTransfer(DMA_HandleTypeDef *hdma, uint32_t CompleteLevel, uint32_t Timeout);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:383:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  383 | HAL_StatusTypeDef HAL_DMA_RegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef CallbackID, void (* pCallback)( DMA_HandleTypeDef * _hdma));
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:249,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:384:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  384 | HAL_StatusTypeDef HAL_DMA_UnRegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef CallbackID);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:285,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:98:3: error: unknown type name 'HAL_LockTypeDef'
+   98 |   HAL_LockTypeDef             Lock;             /*!< FLASH locking object                */
+      |   ^~~~~~~~~~~~~~~
+In file included from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:248,
+                 from ../Core/Inc/stm32f1xx_hal_conf.h:285,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:750:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  750 | HAL_StatusTypeDef  HAL_FLASHEx_Erase(FLASH_EraseInitTypeDef *pEraseInit, uint32_t *PageError);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:751:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  751 | HAL_StatusTypeDef  HAL_FLASHEx_Erase_IT(FLASH_EraseInitTypeDef *pEraseInit);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:761:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  761 | HAL_StatusTypeDef  HAL_FLASHEx_OBErase(void);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:762:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  762 | HAL_StatusTypeDef  HAL_FLASHEx_OBProgram(FLASH_OBProgramInitTypeDef *pOBInit);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:285,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:30,
+                 from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:259:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  259 | HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint64_t Data);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:260:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  260 | HAL_StatusTypeDef HAL_FLASH_Program_IT(uint32_t TypeProgram, uint32_t Address, uint64_t Data);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:276:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  276 | HAL_StatusTypeDef HAL_FLASH_Unlock(void);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:277:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  277 | HAL_StatusTypeDef HAL_FLASH_Lock(void);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:278:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  278 | HAL_StatusTypeDef HAL_FLASH_OB_Unlock(void);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:279:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  279 | HAL_StatusTypeDef HAL_FLASH_OB_Lock(void);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:304:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  304 | HAL_StatusTypeDef       FLASH_WaitForLastOperation(uint32_t Timeout);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+In file included from ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h:200,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h:30,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h:29,
+                 from ../Drivers/KS0108-STM32.c:6:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:283:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  283 | HAL_StatusTypeDef HAL_Init(void);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:284:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  284 | HAL_StatusTypeDef HAL_DeInit(void);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:287:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  287 | HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:300:1: error: unknown type name 'HAL_StatusTypeDef'; did you mean 'HAL_DMA_StateTypeDef'?
+  300 | HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_DMA_StateTypeDef
+../Drivers/KS0108-STM32.c: In function 'GLCD_EnableController':
+../Drivers/KS0108-STM32.c:40:11: warning: implicit declaration of function 'GPIO_ResetBits' [-Wimplicit-function-declaration]
+   40 |  case 0 : GPIO_ResetBits(KS0108_PORT, KS0108_CS1); break;
+      |           ^~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c: In function 'GLCD_DisableController':
+../Drivers/KS0108-STM32.c:51:11: warning: implicit declaration of function 'GPIO_SetBits' [-Wimplicit-function-declaration]
+   51 |  case 0 : GPIO_SetBits(KS0108_PORT, KS0108_CS1); break;
+      |           ^~~~~~~~~~~~
+../Drivers/KS0108-STM32.c: In function 'GLCD_ReadStatus':
+../Drivers/KS0108-STM32.c:63:1: warning: implicit declaration of function 'GPIO_StructInit' [-Wimplicit-function-declaration]
+   63 | GPIO_StructInit(&GPIO_InitStructure);
+      | ^~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c:64:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+   64 | GPIO_InitStructure.GPIO_Pin = 0xFF << KS0108_D0;
+      |                   ^
+../Drivers/KS0108-STM32.c:65:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+   65 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                   ^
+../Drivers/KS0108-STM32.c:65:32: error: 'GPIO_Mode_IPU' undeclared (first use in this function); did you mean 'GPIO_MODE_INPUT'?
+   65 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                                ^~~~~~~~~~~~~
+      |                                GPIO_MODE_INPUT
+../Drivers/KS0108-STM32.c:65:32: note: each undeclared identifier is reported only once for each function it appears in
+../Drivers/KS0108-STM32.c:66:1: warning: implicit declaration of function 'GPIO_Init'; did you mean 'HAL_GPIO_Init'? [-Wimplicit-function-declaration]
+   66 | GPIO_Init(KS0108_PORT, &GPIO_InitStructure);
+      | ^~~~~~~~~
+      | HAL_GPIO_Init
+../Drivers/KS0108-STM32.c:74:12: warning: implicit declaration of function 'GPIO_ReadInputData' [-Wimplicit-function-declaration]
+   74 | status = ((GPIO_ReadInputData(KS0108_PORT) >> KS0108_D0) & 0xFF);
+      |            ^~~~~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c: In function 'GLCD_WriteCommand':
+../Drivers/KS0108-STM32.c:86:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+   86 | GPIO_InitStructure.GPIO_Pin  = (0xFF << KS0108_D0);
+      |                   ^
+../Drivers/KS0108-STM32.c:87:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+   87 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+      |                   ^
+../Drivers/KS0108-STM32.c:87:32: error: 'GPIO_Mode_Out_PP' undeclared (first use in this function)
+   87 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+      |                                ^~~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c: In function 'GLCD_ReadData':
+../Drivers/KS0108-STM32.c:113:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+  113 | GPIO_InitStructure.GPIO_Pin = 0xFF << KS0108_D0;
+      |                   ^
+../Drivers/KS0108-STM32.c:114:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+  114 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                   ^
+../Drivers/KS0108-STM32.c:114:32: error: 'GPIO_Mode_IPU' undeclared (first use in this function); did you mean 'GPIO_MODE_INPUT'?
+  114 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                                ^~~~~~~~~~~~~
+      |                                GPIO_MODE_INPUT
+../Drivers/KS0108-STM32.c: In function 'GLCD_WriteData':
+../Drivers/KS0108-STM32.c:137:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+  137 | GPIO_InitStructure.GPIO_Pin = (0xFF << KS0108_D0);
+      |                   ^
+../Drivers/KS0108-STM32.c:138:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+  138 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+      |                   ^
+../Drivers/KS0108-STM32.c:138:32: error: 'GPIO_Mode_Out_PP' undeclared (first use in this function)
+  138 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+      |                                ^~~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c: In function 'GLCD_InitializePorts':
+../Drivers/KS0108-STM32.c:163:1: error: unknown type name 'vu32'
+  163 | vu32 i;
+      | ^~~~
+../Drivers/KS0108-STM32.c:165:1: warning: implicit declaration of function 'RCC_APB2PeriphClockCmd' [-Wimplicit-function-declaration]
+  165 | RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);
+      | ^~~~~~~~~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c:165:24: error: 'RCC_APB2Periph_GPIOE' undeclared (first use in this function)
+  165 | RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);
+      |                        ^~~~~~~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c:167:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+  167 | GPIO_InitStructure.GPIO_Pin   =  GPIO_Pin_All;
+      |                   ^
+../Drivers/KS0108-STM32.c:167:34: error: 'GPIO_Pin_All' undeclared (first use in this function); did you mean 'GPIO_PIN_All'?
+  167 | GPIO_InitStructure.GPIO_Pin   =  GPIO_Pin_All;
+      |                                  ^~~~~~~~~~~~
+      |                                  GPIO_PIN_All
+../Drivers/KS0108-STM32.c:168:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Speed'
+  168 | GPIO_InitStructure.GPIO_Speed =  GPIO_Speed_2MHz;
+      |                   ^
+../Drivers/KS0108-STM32.c:168:34: error: 'GPIO_Speed_2MHz' undeclared (first use in this function)
+  168 | GPIO_InitStructure.GPIO_Speed =  GPIO_Speed_2MHz;
+      |                                  ^~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c:169:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+  169 | GPIO_InitStructure.GPIO_Mode  =  GPIO_Mode_Out_PP;
+      |                   ^
+../Drivers/KS0108-STM32.c:169:34: error: 'GPIO_Mode_Out_PP' undeclared (first use in this function)
+  169 | GPIO_InitStructure.GPIO_Mode  =  GPIO_Mode_Out_PP;
+      |                                  ^~~~~~~~~~~~~~~~
+../Drivers/KS0108-STM32.c:172:1: warning: implicit declaration of function 'GPIO_Write' [-Wimplicit-function-declaration]
+  172 | GPIO_Write(KS0108_PORT, KS0108_CS1 | KS0108_CS2 | KS0108_CS3 | KS0108_RS | KS0108_RW | (0xFF << KS0108_D0));
+      | ^~~~~~~~~~
+../Drivers/KS0108-STM32.c:163:6: warning: unused variable 'i' [-Wunused-variable]
+  163 | vu32 i;
+      |      ^
+make: *** [Drivers/subdir.mk:25: Drivers/KS0108-STM32.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+13:45:09 Build Failed. 63 errors, 8 warnings. (took 724ms)
+

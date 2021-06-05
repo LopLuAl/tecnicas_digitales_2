@@ -1,0 +1,23 @@
+18:41:19 **** Build of configuration Debug for project siete_segmentos_asm ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f103c8tx.d" -MT"Startup/startup_stm32f103c8tx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f103c8tx.o" "../Startup/startup_stm32f103c8tx.s"
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/bcd.d" -MT"Src/bcd.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/bcd.o" "../Src/bcd.s"
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/led.d" -MT"Src/led.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/led.o" "../Src/led.s"
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/siete_segmentos.d" -MT"Src/siete_segmentos.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/siete_segmentos.o" "../Src/siete_segmentos.s"
+arm-none-eabi-gcc -o "siete_segmentos_asm.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/clase_05_codigo_asm_cortex_m/siete_segmentos_asm/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="siete_segmentos_asm.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: siete_segmentos_asm.elf
+ 
+arm-none-eabi-objdump -h -S  siete_segmentos_asm.elf  > "siete_segmentos_asm.list"
+arm-none-eabi-objcopy  -O binary  siete_segmentos_asm.elf  "siete_segmentos_asm.bin"
+arm-none-eabi-size   siete_segmentos_asm.elf 
+Finished building: siete_segmentos_asm.list
+ 
+   text	   data	    bss	    dec	    hex	filename
+    780	      8	   1568	   2356	    934	siete_segmentos_asm.elf
+Finished building: default.size.stdout
+ 
+Finished building: siete_segmentos_asm.bin
+ 
+
+18:41:19 Build Finished. 0 errors, 0 warnings. (took 329ms)
+

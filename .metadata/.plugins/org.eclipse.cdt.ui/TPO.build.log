@@ -1,0 +1,105 @@
+19:42:49 **** Incremental Build of configuration Debug for project TPO ****
+make -j8 all 
+arm-none-eabi-gcc "../Drivers/Display_grafico/src/KS0108-STM32.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Display_grafico/src/KS0108-STM32.d" -MT"Drivers/Display_grafico/src/KS0108-STM32.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/Display_grafico/src/KS0108-STM32.o"
+arm-none-eabi-gcc "../Drivers/Display_grafico/src/KS0108.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Display_grafico/src/KS0108.d" -MT"Drivers/Display_grafico/src/KS0108.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/Display_grafico/src/KS0108.o"
+../Drivers/Display_grafico/src/KS0108.c:5:10: fatal error: KS0108.h: No such file or directory
+    5 | #include "KS0108.h"
+      |          ^~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/Display_grafico/src/subdir.mk:27: Drivers/Display_grafico/src/KS0108.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Drivers/Display_grafico/src/KS0108-STM32.c: In function 'GLCD_EnableController':
+../Drivers/Display_grafico/src/KS0108-STM32.c:40:11: warning: implicit declaration of function 'GPIO_ResetBits' [-Wimplicit-function-declaration]
+   40 |  case 0 : GPIO_ResetBits(KS0108_PORT, KS0108_CS1); break;
+      |           ^~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c: In function 'GLCD_DisableController':
+../Drivers/Display_grafico/src/KS0108-STM32.c:51:11: warning: implicit declaration of function 'GPIO_SetBits' [-Wimplicit-function-declaration]
+   51 |  case 0 : GPIO_SetBits(KS0108_PORT, KS0108_CS1); break;
+      |           ^~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c: In function 'GLCD_ReadStatus':
+../Drivers/Display_grafico/src/KS0108-STM32.c:63:1: warning: implicit declaration of function 'GPIO_StructInit' [-Wimplicit-function-declaration]
+   63 | GPIO_StructInit(&GPIO_InitStructure);
+      | ^~~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:64:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+   64 | GPIO_InitStructure.GPIO_Pin = 0xFF << KS0108_D0;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:65:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+   65 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:65:32: error: 'GPIO_Mode_IPU' undeclared (first use in this function); did you mean 'GPIO_MODE_INPUT'?
+   65 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                                ^~~~~~~~~~~~~
+      |                                GPIO_MODE_INPUT
+../Drivers/Display_grafico/src/KS0108-STM32.c:65:32: note: each undeclared identifier is reported only once for each function it appears in
+../Drivers/Display_grafico/src/KS0108-STM32.c:66:1: warning: implicit declaration of function 'GPIO_Init' [-Wimplicit-function-declaration]
+   66 | GPIO_Init(KS0108_PORT, &GPIO_InitStructure);
+      | ^~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:74:12: warning: implicit declaration of function 'GPIO_ReadInputData' [-Wimplicit-function-declaration]
+   74 | status = ((GPIO_ReadInputData(KS0108_PORT) >> KS0108_D0) & 0xFF);
+      |            ^~~~~~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c: In function 'GLCD_WriteCommand':
+../Drivers/Display_grafico/src/KS0108-STM32.c:88:1: error: 'GPIO_InitStruct' undeclared (first use in this function); did you mean 'GPIO_InitStructure'?
+   88 | GPIO_InitStruct.Pin  = (0xFF << KS0108_D0);
+      | ^~~~~~~~~~~~~~~
+      | GPIO_InitStructure
+../Drivers/Display_grafico/src/KS0108-STM32.c: In function 'GLCD_ReadData':
+../Drivers/Display_grafico/src/KS0108-STM32.c:115:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+  115 | GPIO_InitStructure.GPIO_Pin = 0xFF << KS0108_D0;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:116:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+  116 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:116:32: error: 'GPIO_Mode_IPU' undeclared (first use in this function); did you mean 'GPIO_MODE_INPUT'?
+  116 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+      |                                ^~~~~~~~~~~~~
+      |                                GPIO_MODE_INPUT
+../Drivers/Display_grafico/src/KS0108-STM32.c: In function 'GLCD_WriteData':
+../Drivers/Display_grafico/src/KS0108-STM32.c:139:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+  139 | GPIO_InitStructure.GPIO_Pin = (0xFF << KS0108_D0);
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:140:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+  140 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:140:32: error: 'GPIO_Mode_Out_PP' undeclared (first use in this function)
+  140 | GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+      |                                ^~~~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c: In function 'GLCD_InitializePorts':
+../Drivers/Display_grafico/src/KS0108-STM32.c:165:1: error: unknown type name 'vu32'
+  165 | vu32 i;
+      | ^~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:167:1: warning: implicit declaration of function 'RCC_APB2PeriphClockCmd' [-Wimplicit-function-declaration]
+  167 | RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);
+      | ^~~~~~~~~~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:167:24: error: 'RCC_APB2Periph_GPIOE' undeclared (first use in this function)
+  167 | RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);
+      |                        ^~~~~~~~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:169:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Pin'
+  169 | GPIO_InitStructure.GPIO_Pin   =  GPIO_Pin_All;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:169:34: error: 'GPIO_Pin_All' undeclared (first use in this function); did you mean 'GPIO_PIN_All'?
+  169 | GPIO_InitStructure.GPIO_Pin   =  GPIO_Pin_All;
+      |                                  ^~~~~~~~~~~~
+      |                                  GPIO_PIN_All
+../Drivers/Display_grafico/src/KS0108-STM32.c:170:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Speed'
+  170 | GPIO_InitStructure.GPIO_Speed =  GPIO_Speed_2MHz;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:170:34: error: 'GPIO_Speed_2MHz' undeclared (first use in this function)
+  170 | GPIO_InitStructure.GPIO_Speed =  GPIO_Speed_2MHz;
+      |                                  ^~~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:171:19: error: 'GPIO_InitTypeDef' {aka 'struct <anonymous>'} has no member named 'GPIO_Mode'
+  171 | GPIO_InitStructure.GPIO_Mode  =  GPIO_Mode_Out_PP;
+      |                   ^
+../Drivers/Display_grafico/src/KS0108-STM32.c:171:34: error: 'GPIO_Mode_Out_PP' undeclared (first use in this function)
+  171 | GPIO_InitStructure.GPIO_Mode  =  GPIO_Mode_Out_PP;
+      |                                  ^~~~~~~~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:174:1: warning: implicit declaration of function 'GPIO_Write' [-Wimplicit-function-declaration]
+  174 | GPIO_Write(KS0108_PORT, KS0108_CS1 | KS0108_CS2 | KS0108_CS3 | KS0108_RS | KS0108_RW | (0xFF << KS0108_D0));
+      | ^~~~~~~~~~
+../Drivers/Display_grafico/src/KS0108-STM32.c:165:6: warning: unused variable 'i' [-Wunused-variable]
+  165 | vu32 i;
+      |      ^
+make: *** [Drivers/Display_grafico/src/subdir.mk:25: Drivers/Display_grafico/src/KS0108-STM32.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+19:42:50 Build Failed. 22 errors, 8 warnings. (took 383ms)
+

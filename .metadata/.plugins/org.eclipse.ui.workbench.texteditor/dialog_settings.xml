@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="&#x09;&#x09;.type&#x09;&#x09;debounce_init, %function&#x0D;&#x0A;debounce_init:&#x0D;&#x0A;&#x09;&#x09;PUSH&#x09;{R0, R1}&#x0D;&#x0A;&#x09;&#x09;MOVS&#x09;R0,#0&#x0D;&#x0A;&#x09;&#x09;LDR&#x09;&#x09;R1,=estado&#x0D;&#x0A;&#x09;&#x09;STR&#x09;&#x09;R0,[R1]&#x0D;&#x0A;&#x09;&#x09;LDR&#x09;&#x09;R1,=debounce&#x0D;&#x0A;&#x09;&#x09;STR&#x09;&#x09;R0,[R1]&#x0D;&#x0A;&#x09;&#x09;LDR&#x09;&#x09;R1,=estado_boton&#x0D;&#x0A;&#x09;&#x09;STR&#x09;&#x09;R0,[R1]&#x0D;&#x0A;&#x09;&#x09;POP&#x09;&#x09;{R0, R1}&#x0D;&#x0A;&#x09;&#x09;BX&#x09;&#x09;LR"/>
+		<list key="findhistory">
+			<item value="LOOP_COMPARE"/>
+			<item value="gpio"/>
+			<item value="GPIO_Init"/>
+			<item value="GPIO_InitStructure"/>
+			<item value="Pin"/>
+			<item value="GPIO_PIN_13"/>
+		</list>
+		<list key="replacehistory">
+			<item value="PIN"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="892"/>
+		<item key="DIALOG_Y_ORIGIN" value="59"/>
+		<item key="DIALOG_WIDTH" value="348"/>
+		<item key="DIALOG_HEIGHT" value="437"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+	</section>
+</section>

@@ -1,0 +1,996 @@
+
+Cerradura_TD2.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   00000130  08000000  08000000  00010000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         0000039c  08000130  08000130  00010130  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  080004cc  080004d4  000104d4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .ARM.extab    00000000  080004cc  080004cc  000104d4  2**0
+                  CONTENTS
+  4 .ARM          00000000  080004cc  080004cc  000104d4  2**0
+                  CONTENTS
+  5 .preinit_array 00000000  080004cc  080004d4  000104d4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  080004cc  080004cc  000104cc  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  7 .fini_array   00000004  080004d0  080004d0  000104d0  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  8 .data         00000000  20000000  20000000  000104d4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .bss          00000030  20000000  080004d4  00020000  2**2
+                  ALLOC
+ 10 ._user_heap_stack 00000600  20000030  080004d4  00020030  2**0
+                  ALLOC
+ 11 .ARM.attributes 00000029  00000000  00000000  000104d4  2**0
+                  CONTENTS, READONLY
+ 12 .debug_line   000002c0  00000000  00000000  000104fd  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 13 .debug_info   000000ba  00000000  00000000  000107bd  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_abbrev 00000062  00000000  00000000  00010877  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_aranges 000000a8  00000000  00000000  000108e0  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_str    000000b9  00000000  00000000  00010988  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_ranges 00000020  00000000  00000000  00010a48  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_frame  0000002c  00000000  00000000  00010a68  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000130 <__do_global_dtors_aux>:
+ 8000130:	b510      	push	{r4, lr}
+ 8000132:	4c05      	ldr	r4, [pc, #20]	; (8000148 <__do_global_dtors_aux+0x18>)
+ 8000134:	7823      	ldrb	r3, [r4, #0]
+ 8000136:	b933      	cbnz	r3, 8000146 <__do_global_dtors_aux+0x16>
+ 8000138:	4b04      	ldr	r3, [pc, #16]	; (800014c <__do_global_dtors_aux+0x1c>)
+ 800013a:	b113      	cbz	r3, 8000142 <__do_global_dtors_aux+0x12>
+ 800013c:	4804      	ldr	r0, [pc, #16]	; (8000150 <__do_global_dtors_aux+0x20>)
+ 800013e:	f3af 8000 	nop.w
+ 8000142:	2301      	movs	r3, #1
+ 8000144:	7023      	strb	r3, [r4, #0]
+ 8000146:	bd10      	pop	{r4, pc}
+ 8000148:	20000000 	.word	0x20000000
+ 800014c:	00000000 	.word	0x00000000
+ 8000150:	080004b4 	.word	0x080004b4
+
+08000154 <frame_dummy>:
+ 8000154:	b508      	push	{r3, lr}
+ 8000156:	4b03      	ldr	r3, [pc, #12]	; (8000164 <frame_dummy+0x10>)
+ 8000158:	b11b      	cbz	r3, 8000162 <frame_dummy+0xe>
+ 800015a:	4903      	ldr	r1, [pc, #12]	; (8000168 <frame_dummy+0x14>)
+ 800015c:	4803      	ldr	r0, [pc, #12]	; (800016c <frame_dummy+0x18>)
+ 800015e:	f3af 8000 	nop.w
+ 8000162:	bd08      	pop	{r3, pc}
+ 8000164:	00000000 	.word	0x00000000
+ 8000168:	20000004 	.word	0x20000004
+ 800016c:	080004b4 	.word	0x080004b4
+
+08000170 <debounce_init>:
+/*	Inicializa la máquina de estados.	*/
+/*	pone todas las variables a cero		*/
+/****************************************/
+		.type		debounce_init, %function
+debounce_init:
+		PUSH	{R0, R1}
+ 8000170:	b403      	push	{r0, r1}
+		MOVS	R0,#0
+ 8000172:	2000      	movs	r0, #0
+		LDR		R1,=estado
+ 8000174:	4920      	ldr	r1, [pc, #128]	; (80001f8 <debounce_salir+0xe>)
+		STR		R0,[R1]
+ 8000176:	6008      	str	r0, [r1, #0]
+		LDR		R1,=debounce
+ 8000178:	4920      	ldr	r1, [pc, #128]	; (80001fc <debounce_salir+0x12>)
+		STR		R0,[R1]
+ 800017a:	6008      	str	r0, [r1, #0]
+		LDR		R1,=estado_boton
+ 800017c:	4920      	ldr	r1, [pc, #128]	; (8000200 <debounce_salir+0x16>)
+		STR		R0,[R1]
+ 800017e:	6008      	str	r0, [r1, #0]
+		POP		{R0, R1}
+ 8000180:	bc03      	pop	{r0, r1}
+		BX		LR
+ 8000182:	4770      	bx	lr
+
+08000184 <debounce_tarea>:
+/*	cero es presionado.					*/
+/*  devuelvo por R0 estado_boton		*/
+/****************************************/
+		.type		debounce_tarea, %function
+debounce_tarea:
+		PUSH	{R1, R2, R3}
+ 8000184:	b40e      	push	{r1, r2, r3}
+		//Leo la variable de estado.
+		LDR		R1,=estado
+ 8000186:	491c      	ldr	r1, [pc, #112]	; (80001f8 <debounce_salir+0xe>)
+		LDR 	R2,[R1]
+ 8000188:	680a      	ldr	r2, [r1, #0]
+
+		LDR		R1,=estado_boton
+ 800018a:	491d      	ldr	r1, [pc, #116]	; (8000200 <debounce_salir+0x16>)
+		STR		R0,[R1]
+ 800018c:	6008      	str	r0, [r1, #0]
+
+0800018e <debounce_estado_cero>:
+
+debounce_estado_cero:
+		CMP 	R2,#0
+ 800018e:	2a00      	cmp	r2, #0
+		BNE 	debounce_estado_uno
+ 8000190:	d106      	bne.n	80001a0 <debounce_estado_uno>
+		//Ejecuto el código del estado cero.
+		CMP 	R0,#0x0
+ 8000192:	2800      	cmp	r0, #0
+		BNE 	debounce_salir
+ 8000194:	d129      	bne.n	80001ea <debounce_salir>
+
+08000196 <debounce_carga>:
+		//Si está presionado debounce=DEBOUNCE_TIME y voy a estado_uno.
+debounce_carga:
+		LDR 	R1,=debounce
+ 8000196:	4919      	ldr	r1, [pc, #100]	; (80001fc <debounce_salir+0x12>)
+		LDR 	R0,=#DEBOUNCE_TIME
+ 8000198:	481a      	ldr	r0, [pc, #104]	; (8000204 <debounce_salir+0x1a>)
+		STR 	R0,[R1]
+ 800019a:	6008      	str	r0, [r1, #0]
+		ADDS 	R2, #1
+ 800019c:	3201      	adds	r2, #1
+		B 		debounce_salir
+ 800019e:	e024      	b.n	80001ea <debounce_salir>
+
+080001a0 <debounce_estado_uno>:
+debounce_estado_uno:
+		CMP 	R2,#1
+ 80001a0:	2a01      	cmp	r2, #1
+		BNE 	debounce_estado_dos
+ 80001a2:	d110      	bne.n	80001c6 <debounce_estado_dos>
+		LDR		R1,=debounce
+ 80001a4:	4915      	ldr	r1, [pc, #84]	; (80001fc <debounce_salir+0x12>)
+		LDR 	R3,[R1]
+ 80001a6:	680b      	ldr	r3, [r1, #0]
+		SUBS 	R3,#1
+ 80001a8:	3b01      	subs	r3, #1
+		STR 	R3,[R1]	//debounce--
+ 80001aa:	600b      	str	r3, [r1, #0]
+		CMP		R3,#0
+ 80001ac:	2b00      	cmp	r3, #0
+		BNE		debounce_salir
+ 80001ae:	d11c      	bne.n	80001ea <debounce_salir>
+		CMP		R0,#0	//Se venció el antirrebote y está presionado.
+ 80001b0:	2800      	cmp	r0, #0
+		BNE		debounce_estado_uno_2
+ 80001b2:	d106      	bne.n	80001c2 <debounce_estado_uno_2>
+		LDR		R1,=estado_boton
+ 80001b4:	4912      	ldr	r1, [pc, #72]	; (8000200 <debounce_salir+0x16>)
+		LDR		R3,[R1]
+ 80001b6:	680b      	ldr	r3, [r1, #0]
+		MOVS	R0,#1
+ 80001b8:	2001      	movs	r0, #1
+		EORS	R3,R0
+ 80001ba:	4043      	eors	r3, r0
+		STR		R3,[R1]
+ 80001bc:	600b      	str	r3, [r1, #0]
+		ADDS	R2,#1
+ 80001be:	3201      	adds	r2, #1
+		B		debounce_salir
+ 80001c0:	e013      	b.n	80001ea <debounce_salir>
+
+080001c2 <debounce_estado_uno_2>:
+debounce_estado_uno_2:
+		SUBS	R2,#1
+ 80001c2:	3a01      	subs	r2, #1
+		B		debounce_salir
+ 80001c4:	e011      	b.n	80001ea <debounce_salir>
+
+080001c6 <debounce_estado_dos>:
+debounce_estado_dos:
+		CMP 	R2,#2
+ 80001c6:	2a02      	cmp	r2, #2
+		BNE 	debounce_estado_tres
+ 80001c8:	d102      	bne.n	80001d0 <debounce_estado_tres>
+		CMP 	R0,#0
+ 80001ca:	2800      	cmp	r0, #0
+		BEQ 	debounce_salir
+ 80001cc:	d00d      	beq.n	80001ea <debounce_salir>
+		B		debounce_carga
+ 80001ce:	e7e2      	b.n	8000196 <debounce_carga>
+
+080001d0 <debounce_estado_tres>:
+debounce_estado_tres:
+		CMP	R2, #3
+ 80001d0:	2a03      	cmp	r2, #3
+		BNE debounce_salir
+ 80001d2:	d10a      	bne.n	80001ea <debounce_salir>
+		LDR		R1,=debounce
+ 80001d4:	4909      	ldr	r1, [pc, #36]	; (80001fc <debounce_salir+0x12>)
+		LDR 	R3,[R1]
+ 80001d6:	680b      	ldr	r3, [r1, #0]
+		SUBS 	R3,#1
+ 80001d8:	3b01      	subs	r3, #1
+		STR 	R3,[R1]
+ 80001da:	600b      	str	r3, [r1, #0]
+		CMP		R3,#0
+ 80001dc:	2b00      	cmp	r3, #0
+		BNE		debounce_salir
+ 80001de:	d104      	bne.n	80001ea <debounce_salir>
+		CMP		R0,#0
+ 80001e0:	2800      	cmp	r0, #0
+		BEQ		debounce_estado_tres_2
+ 80001e2:	d001      	beq.n	80001e8 <debounce_estado_tres_2>
+		MOVS	R2,#0
+ 80001e4:	2200      	movs	r2, #0
+		B		debounce_salir
+ 80001e6:	e000      	b.n	80001ea <debounce_salir>
+
+080001e8 <debounce_estado_tres_2>:
+debounce_estado_tres_2:
+		SUBS	R2,#1
+ 80001e8:	3a01      	subs	r2, #1
+
+080001ea <debounce_salir>:
+debounce_salir:
+		LDR	R1,=estado
+ 80001ea:	4903      	ldr	r1, [pc, #12]	; (80001f8 <debounce_salir+0xe>)
+		STR R2,[R1]
+ 80001ec:	600a      	str	r2, [r1, #0]
+		LDR R1,=estado_boton
+ 80001ee:	4904      	ldr	r1, [pc, #16]	; (8000200 <debounce_salir+0x16>)
+		LDR R0,[R1]
+ 80001f0:	6808      	ldr	r0, [r1, #0]
+		POP		{R1, R2, R3}
+ 80001f2:	bc0e      	pop	{r1, r2, r3}
+		BX		LR
+ 80001f4:	4770      	bx	lr
+ 80001f6:	0000      	.short	0x0000
+		LDR		R1,=estado
+ 80001f8:	20000020 	.word	0x20000020
+		LDR		R1,=debounce
+ 80001fc:	20000024 	.word	0x20000024
+		LDR		R1,=estado_boton
+ 8000200:	2000001c 	.word	0x2000001c
+		LDR 	R0,=#DEBOUNCE_TIME
+ 8000204:	00000014 	.word	0x00000014
+
+08000208 <lectura_teclado>:
+		.align		2
+ 		.global		lectura_teclado, numero_combinacion_init,numero_combinacion
+
+		.type	lectura_teclado, %function
+lectura_teclado:
+		PUSH	{R1, R2, R3, LR}		// Mando lo que modifico a la pila
+ 8000208:	b50e      	push	{r1, r2, r3, lr}
+		// Pongo en '0' la primer COLUMNA
+		LDR		R1, =#0x3F
+ 800020a:	4942      	ldr	r1, [pc, #264]	; (8000314 <SALIR+0x2>)
+		LDR 	R2, =#GPIOA_ODR
+ 800020c:	4a42      	ldr	r2, [pc, #264]	; (8000318 <SALIR+0x6>)
+		STR		R1, [R2]
+ 800020e:	6011      	str	r1, [r2, #0]
+
+		LDR		R1, =#PORTA_IDR
+ 8000210:	4942      	ldr	r1, [pc, #264]	; (800031c <SALIR+0xa>)
+		LDR		R3,[R1]
+ 8000212:	680b      	ldr	r3, [r1, #0]
+		LDR 	R2,=#0xFF
+ 8000214:	4a42      	ldr	r2, [pc, #264]	; (8000320 <SALIR+0xe>)
+		ANDS	R3,R3,R2
+ 8000216:	4013      	ands	r3, r2
+		CMP 	R3,#TECLA_3
+ 8000218:	2b3e      	cmp	r3, #62	; 0x3e
+		BEQ 	TECLA_3_PRESIONADA
+ 800021a:	d02b      	beq.n	8000274 <TECLA_3_PRESIONADA>
+		CMP 	R3,#TECLA_6
+ 800021c:	2b3d      	cmp	r3, #61	; 0x3d
+		BEQ 	TECLA_6_PRESIONADA
+ 800021e:	d02f      	beq.n	8000280 <TECLA_6_PRESIONADA>
+		CMP 	R3,#TECLA_9
+ 8000220:	2b3b      	cmp	r3, #59	; 0x3b
+		BEQ 	TECLA_9_PRESIONADA
+ 8000222:	d033      	beq.n	800028c <TECLA_9_PRESIONADA>
+		CMP 	R3,#TECLA_NUM
+ 8000224:	2b37      	cmp	r3, #55	; 0x37
+		BEQ 	TECLA_NUM_PRESIONADA
+ 8000226:	d033      	beq.n	8000290 <TECLA_NUM_PRESIONADA>
+
+		// Pongo en '0' la SEGUNDA COLUMNA
+		LDR		R1, =#0x5F
+ 8000228:	493e      	ldr	r1, [pc, #248]	; (8000324 <SALIR+0x12>)
+		LDR 	R2, =#GPIOA_ODR
+ 800022a:	4a3b      	ldr	r2, [pc, #236]	; (8000318 <SALIR+0x6>)
+		STR		R1, [R2]
+ 800022c:	6011      	str	r1, [r2, #0]
+
+		LDR		R1, =#PORTA_IDR
+ 800022e:	493b      	ldr	r1, [pc, #236]	; (800031c <SALIR+0xa>)
+		LDR		R3,[R1]
+ 8000230:	680b      	ldr	r3, [r1, #0]
+		LDR 	R2,=#0xFF
+ 8000232:	4a3b      	ldr	r2, [pc, #236]	; (8000320 <SALIR+0xe>)
+		ANDS	R3,R3,R2
+ 8000234:	4013      	ands	r3, r2
+		CMP 	R3,#TECLA_2
+ 8000236:	2b5e      	cmp	r3, #94	; 0x5e
+		BEQ 	TECLA_2_PRESIONADA
+ 8000238:	d01a      	beq.n	8000270 <TECLA_2_PRESIONADA>
+		CMP 	R3,#TECLA_5
+ 800023a:	2b5d      	cmp	r3, #93	; 0x5d
+		BEQ 	TECLA_5_PRESIONADA
+ 800023c:	d01e      	beq.n	800027c <TECLA_5_PRESIONADA>
+		CMP 	R3,#TECLA_8
+ 800023e:	2b5b      	cmp	r3, #91	; 0x5b
+		BEQ 	TECLA_8_PRESIONADA
+ 8000240:	d022      	beq.n	8000288 <TECLA_8_PRESIONADA>
+		CMP 	R3,#TECLA_0
+ 8000242:	2b57      	cmp	r3, #87	; 0x57
+		BEQ 	TECLA_0_PRESIONADA
+ 8000244:	d010      	beq.n	8000268 <TECLA_0_PRESIONADA>
+
+		// Pongo en '0' la TERCERA COLUMNA
+		LDR		R1, =#0x6F
+ 8000246:	4938      	ldr	r1, [pc, #224]	; (8000328 <SALIR+0x16>)
+		LDR 	R2, =#GPIOA_ODR
+ 8000248:	4a33      	ldr	r2, [pc, #204]	; (8000318 <SALIR+0x6>)
+		STR		R1, [R2]
+ 800024a:	6011      	str	r1, [r2, #0]
+
+		LDR		R1, =#PORTA_IDR
+ 800024c:	4933      	ldr	r1, [pc, #204]	; (800031c <SALIR+0xa>)
+		LDR		R3,[R1]
+ 800024e:	680b      	ldr	r3, [r1, #0]
+		LDR 	R2,=#0xFF
+ 8000250:	4a33      	ldr	r2, [pc, #204]	; (8000320 <SALIR+0xe>)
+		ANDS	R3,R3,R2
+ 8000252:	4013      	ands	r3, r2
+		CMP 	R3,#TECLA_1
+ 8000254:	2b6e      	cmp	r3, #110	; 0x6e
+		BEQ 	TECLA_1_PRESIONADA
+ 8000256:	d009      	beq.n	800026c <TECLA_1_PRESIONADA>
+		CMP 	R3,#TECLA_4
+ 8000258:	2b6d      	cmp	r3, #109	; 0x6d
+		BEQ 	TECLA_4_PRESIONADA
+ 800025a:	d00d      	beq.n	8000278 <TECLA_4_PRESIONADA>
+		CMP 	R3,#TECLA_7
+ 800025c:	2b6b      	cmp	r3, #107	; 0x6b
+		BEQ 	TECLA_7_PRESIONADA
+ 800025e:	d011      	beq.n	8000284 <TECLA_7_PRESIONADA>
+		CMP 	R3,#TECLA_AST
+ 8000260:	2b67      	cmp	r3, #103	; 0x67
+		BEQ 	TECLA_AST_PRESIONADA
+ 8000262:	d017      	beq.n	8000294 <TECLA_AST_PRESIONADA>
+
+
+		LDR		R0,	=#0xff // Si no presione ninguna tecla, cargo con ff
+ 8000264:	482e      	ldr	r0, [pc, #184]	; (8000320 <SALIR+0xe>)
+		POP	{R1, R2, R3,PC}		// Mando lo que modifico a la pila
+ 8000266:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000268 <TECLA_0_PRESIONADA>:
+
+TECLA_0_PRESIONADA:
+		LDR		R0, =#0
+ 8000268:	4830      	ldr	r0, [pc, #192]	; (800032c <SALIR+0x1a>)
+		POP		{R1, R2, R3, PC}
+ 800026a:	bd0e      	pop	{r1, r2, r3, pc}
+
+0800026c <TECLA_1_PRESIONADA>:
+TECLA_1_PRESIONADA:
+		LDR		R0, =#1
+ 800026c:	4830      	ldr	r0, [pc, #192]	; (8000330 <SALIR+0x1e>)
+		POP		{R1, R2, R3, PC}
+ 800026e:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000270 <TECLA_2_PRESIONADA>:
+TECLA_2_PRESIONADA:
+		LDR		R0, =#2
+ 8000270:	4830      	ldr	r0, [pc, #192]	; (8000334 <SALIR+0x22>)
+		POP		{R1, R2, R3, PC}
+ 8000272:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000274 <TECLA_3_PRESIONADA>:
+TECLA_3_PRESIONADA:
+		LDR		R0, =#3
+ 8000274:	4830      	ldr	r0, [pc, #192]	; (8000338 <SALIR+0x26>)
+		POP		{R1, R2, R3, PC}
+ 8000276:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000278 <TECLA_4_PRESIONADA>:
+TECLA_4_PRESIONADA:
+		LDR		R0, =#4
+ 8000278:	4830      	ldr	r0, [pc, #192]	; (800033c <SALIR+0x2a>)
+		POP		{R1, R2, R3, PC}
+ 800027a:	bd0e      	pop	{r1, r2, r3, pc}
+
+0800027c <TECLA_5_PRESIONADA>:
+TECLA_5_PRESIONADA:
+		LDR		R0, =#5
+ 800027c:	4830      	ldr	r0, [pc, #192]	; (8000340 <SALIR+0x2e>)
+		POP		{R1, R2, R3, PC}
+ 800027e:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000280 <TECLA_6_PRESIONADA>:
+TECLA_6_PRESIONADA:
+		LDR		R0, =#6
+ 8000280:	4830      	ldr	r0, [pc, #192]	; (8000344 <SALIR+0x32>)
+		POP		{R1, R2, R3, PC}
+ 8000282:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000284 <TECLA_7_PRESIONADA>:
+TECLA_7_PRESIONADA:
+		LDR		R0, =#7
+ 8000284:	4830      	ldr	r0, [pc, #192]	; (8000348 <SALIR+0x36>)
+		POP		{R1, R2, R3, PC}
+ 8000286:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000288 <TECLA_8_PRESIONADA>:
+TECLA_8_PRESIONADA:
+		LDR		R0, =#8
+ 8000288:	4830      	ldr	r0, [pc, #192]	; (800034c <SALIR+0x3a>)
+		POP		{R1, R2, R3, PC}
+ 800028a:	bd0e      	pop	{r1, r2, r3, pc}
+
+0800028c <TECLA_9_PRESIONADA>:
+TECLA_9_PRESIONADA:
+		LDR		R0, =#9
+ 800028c:	4830      	ldr	r0, [pc, #192]	; (8000350 <SALIR+0x3e>)
+		POP		{R1, R2, R3, PC}
+ 800028e:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000290 <TECLA_NUM_PRESIONADA>:
+TECLA_NUM_PRESIONADA:
+		LDR		R0, =#10
+ 8000290:	4830      	ldr	r0, [pc, #192]	; (8000354 <SALIR+0x42>)
+		POP		{R1, R2, R3, PC}
+ 8000292:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000294 <TECLA_AST_PRESIONADA>:
+TECLA_AST_PRESIONADA:
+		LDR		R0, =#11
+ 8000294:	4830      	ldr	r0, [pc, #192]	; (8000358 <SALIR+0x46>)
+		POP		{R1, R2, R3, PC}
+ 8000296:	bd0e      	pop	{r1, r2, r3, pc}
+
+08000298 <numero_combinacion_init>:
+
+
+		.type		numero_combinacion_init, %function
+numero_combinacion_init:
+		PUSH	{R0, R1}
+ 8000298:	b403      	push	{r0, r1}
+		MOVS	R0,#1
+ 800029a:	2001      	movs	r0, #1
+		LDR		R1,=estado_combinacion
+ 800029c:	492f      	ldr	r1, [pc, #188]	; (800035c <SALIR+0x4a>)
+		STR		R0,[R1]
+ 800029e:	6008      	str	r0, [r1, #0]
+		POP		{R0, R1}
+ 80002a0:	bc03      	pop	{r0, r1}
+		BX		LR
+ 80002a2:	4770      	bx	lr
+
+080002a4 <numero_combinacion>:
+
+		.type	numero_combinacion, %function
+numero_combinacion:
+		PUSH	{R1, R2, R3, R4, LR}
+ 80002a4:	b51e      	push	{r1, r2, r3, r4, lr}
+			estado_combinacion	-> VARIABLE QUE GUARDA LOS ESTADOS DE LA MAQUINA DE ESTADOS
+			combinacion  		-> NUMERO DE COMBINACION FORMADO
+			estado_boton 		-> VALOR DEL DIGITO FILTRADO DEL TECLADO MATRICIAL
+		*/
+
+		LDR 	R1,=estado_combinacion
+ 80002a6:	492d      	ldr	r1, [pc, #180]	; (800035c <SALIR+0x4a>)
+		LDR 	R2,=combinacion
+ 80002a8:	4a2d      	ldr	r2, [pc, #180]	; (8000360 <SALIR+0x4e>)
+		LDR		R3,=estado_boton 	//Direccion de la varible donde guardo la tecla filtrada del matricial
+ 80002aa:	4b2e      	ldr	r3, [pc, #184]	; (8000364 <SALIR+0x52>)
+
+		LDR		R3,[R3]				//Cargo en R3 el contenido de R3 (tecla filtrada del matricial)
+ 80002ac:	681b      	ldr	r3, [r3, #0]
+		CMP		R3,0xFF				//Si no presione ninguna tecla, salgo de la rutina de armado de la combinacion
+ 80002ae:	2bff      	cmp	r3, #255	; 0xff
+		BEQ		SALIR
+ 80002b0:	d02f      	beq.n	8000312 <SALIR>
+
+		/**********PRENDO Y APAGO EL LED PARA INDICAR QUE INGRESE EL NUMERO************/
+		MOVS	R0,#1
+ 80002b2:	2001      	movs	r0, #1
+		BL		led_set
+ 80002b4:	f000 f871 	bl	800039a <led_set>
+		//Demora
+		LDR		R0,=#LOOP_COMPARE
+ 80002b8:	482b      	ldr	r0, [pc, #172]	; (8000368 <SALIR+0x56>)
+		BL		delay
+ 80002ba:	f000 f877 	bl	80003ac <delay>
+		//Apago el led
+		MOVS	R0,#0
+ 80002be:	2000      	movs	r0, #0
+		BL		led_set
+ 80002c0:	f000 f86b 	bl	800039a <led_set>
+		/**********PRENDO Y APAGO EL LED PARA INDICAR QUE INGRESE EL NUMERO************/
+
+		LDR  	R4,[R1] // cargo en r4 el conteniod apuntado por r1
+ 80002c4:	680c      	ldr	r4, [r1, #0]
+		CMP		R4, #1
+ 80002c6:	2c01      	cmp	r4, #1
+		BEQ		ESTADO_1
+ 80002c8:	d005      	beq.n	80002d6 <ESTADO_1>
+		CMP		R4, #2
+ 80002ca:	2c02      	cmp	r4, #2
+		BEQ		ESTADO_2
+ 80002cc:	d009      	beq.n	80002e2 <ESTADO_2>
+		CMP		R4, #3
+ 80002ce:	2c03      	cmp	r4, #3
+		BEQ		ESTADO_3
+ 80002d0:	d00f      	beq.n	80002f2 <ESTADO_3>
+		CMP		R4, #4
+ 80002d2:	2c04      	cmp	r4, #4
+		BEQ		ESTADO_4
+ 80002d4:	d015      	beq.n	8000302 <ESTADO_4>
+
+080002d6 <ESTADO_1>:
+
+
+ESTADO_1: // Aca ingrese el primer digito y lo multiplico por 1000
+		LDR  	R4, =#1000
+ 80002d6:	4c25      	ldr	r4, [pc, #148]	; (800036c <SALIR+0x5a>)
+		MULS 	R3,R3,R4  //estado_boton = estado_boton*1000
+ 80002d8:	4363      	muls	r3, r4
+		STR  	R3,[R2]   //combinacion = estado_boton
+ 80002da:	6013      	str	r3, [r2, #0]
+		LDR  	R4, =#2   //Cargo el siguiente estado y espero que el usuario ingrese una nueva tecla
+ 80002dc:	4c15      	ldr	r4, [pc, #84]	; (8000334 <SALIR+0x22>)
+		STR	 	R4,[R1]   //
+ 80002de:	600c      	str	r4, [r1, #0]
+		B    	SALIR
+ 80002e0:	e017      	b.n	8000312 <SALIR>
+
+080002e2 <ESTADO_2>:
+
+ESTADO_2:
+		LDR  	R4, =#100
+ 80002e2:	4c23      	ldr	r4, [pc, #140]	; (8000370 <SALIR+0x5e>)
+		MULS 	R3,R3,R4  //estado_boton = estado_boton*100
+ 80002e4:	4363      	muls	r3, r4
+		LDR	 	R4,[R2]   //R4 = *combinacion
+ 80002e6:	6814      	ldr	r4, [r2, #0]
+		ADDS 	R3,R3,R4 // estado_boton = estado_boton*100+combinacion
+ 80002e8:	191b      	adds	r3, r3, r4
+		STR  	R3,[R2]  // combinacion = estado_boton
+ 80002ea:	6013      	str	r3, [r2, #0]
+		LDR  	R4, =#3   //Cargo el siguiente estado y espero que el usuario ingrese una nueva tecla
+ 80002ec:	4c12      	ldr	r4, [pc, #72]	; (8000338 <SALIR+0x26>)
+		STR	 	R4,[R1]   //
+ 80002ee:	600c      	str	r4, [r1, #0]
+		B 		SALIR
+ 80002f0:	e00f      	b.n	8000312 <SALIR>
+
+080002f2 <ESTADO_3>:
+
+
+ESTADO_3:
+		LDR  	R4, =#10
+ 80002f2:	4c18      	ldr	r4, [pc, #96]	; (8000354 <SALIR+0x42>)
+		MULS 	R3,R3,R4  //estado_boton = estado_boton*10
+ 80002f4:	4363      	muls	r3, r4
+		LDR	 	R4,[R2]   //R4 = *combinacion
+ 80002f6:	6814      	ldr	r4, [r2, #0]
+		ADDS 	R3,R3,R4 // estado_boton = estado_boton*10+combinacion
+ 80002f8:	191b      	adds	r3, r3, r4
+		STR  	R3,[R2]  // combinacion = estado_boton
+ 80002fa:	6013      	str	r3, [r2, #0]
+		LDR  	R4, =#4   //Cargo el siguiente estado y espero que el usuario ingrese una nueva tecla
+ 80002fc:	4c0f      	ldr	r4, [pc, #60]	; (800033c <SALIR+0x2a>)
+		STR	 	R4,[R1]   //
+ 80002fe:	600c      	str	r4, [r1, #0]
+		B 		SALIR
+ 8000300:	e007      	b.n	8000312 <SALIR>
+
+08000302 <ESTADO_4>:
+
+ESTADO_4:
+		LDR  	R4, =#1
+ 8000302:	4c0b      	ldr	r4, [pc, #44]	; (8000330 <SALIR+0x1e>)
+		MULS 	R3,R3,R4  //estado_boton = estado_boton*1
+ 8000304:	4363      	muls	r3, r4
+		LDR	 	R4,[R2]   //R4 = *combinacion
+ 8000306:	6814      	ldr	r4, [r2, #0]
+		ADDS 	R3,R3,R4 // estado_boton = estado_boton*1+combinacion
+ 8000308:	191b      	adds	r3, r3, r4
+		STR  	R3,[R2]  // combinacion = estado_boton
+ 800030a:	6013      	str	r3, [r2, #0]
+		LDR  	R4, =#1   //Cargo el siguiente estado y espero que el usuario ingrese una nueva tecla
+ 800030c:	4c08      	ldr	r4, [pc, #32]	; (8000330 <SALIR+0x1e>)
+		STR	 	R4,[R1]   //
+ 800030e:	600c      	str	r4, [r1, #0]
+		B 		SALIR
+ 8000310:	e7ff      	b.n	8000312 <SALIR>
+
+08000312 <SALIR>:
+
+
+SALIR:
+		POP		{R1, R2, R3, R4, PC}
+ 8000312:	bd1e      	pop	{r1, r2, r3, r4, pc}
+		LDR		R1, =#0x3F
+ 8000314:	0000003f 	.word	0x0000003f
+		LDR 	R2, =#GPIOA_ODR
+ 8000318:	4001080c 	.word	0x4001080c
+		LDR		R1, =#PORTA_IDR
+ 800031c:	40010808 	.word	0x40010808
+		LDR 	R2,=#0xFF
+ 8000320:	000000ff 	.word	0x000000ff
+		LDR		R1, =#0x5F
+ 8000324:	0000005f 	.word	0x0000005f
+		LDR		R1, =#0x6F
+ 8000328:	0000006f 	.word	0x0000006f
+		LDR		R0, =#0
+ 800032c:	00000000 	.word	0x00000000
+		LDR		R0, =#1
+ 8000330:	00000001 	.word	0x00000001
+		LDR		R0, =#2
+ 8000334:	00000002 	.word	0x00000002
+		LDR		R0, =#3
+ 8000338:	00000003 	.word	0x00000003
+		LDR		R0, =#4
+ 800033c:	00000004 	.word	0x00000004
+		LDR		R0, =#5
+ 8000340:	00000005 	.word	0x00000005
+		LDR		R0, =#6
+ 8000344:	00000006 	.word	0x00000006
+		LDR		R0, =#7
+ 8000348:	00000007 	.word	0x00000007
+		LDR		R0, =#8
+ 800034c:	00000008 	.word	0x00000008
+		LDR		R0, =#9
+ 8000350:	00000009 	.word	0x00000009
+		LDR		R0, =#10
+ 8000354:	0000000a 	.word	0x0000000a
+		LDR		R0, =#11
+ 8000358:	0000000b 	.word	0x0000000b
+		LDR		R1,=estado_combinacion
+ 800035c:	2000002c 	.word	0x2000002c
+		LDR 	R2,=combinacion
+ 8000360:	20000028 	.word	0x20000028
+		LDR		R3,=estado_boton 	//Direccion de la varible donde guardo la tecla filtrada del matricial
+ 8000364:	2000001c 	.word	0x2000001c
+		LDR		R0,=#LOOP_COMPARE
+ 8000368:	0002ffff 	.word	0x0002ffff
+		LDR  	R4, =#1000
+ 800036c:	000003e8 	.word	0x000003e8
+		LDR  	R4, =#100
+ 8000370:	00000064 	.word	0x00000064
+
+08000374 <gpio_init>:
+/*	Función led_init. 				 	*/
+/*	Inicializa El LED					*/
+/****************************************/
+		.type	gpio_init, %function
+gpio_init:
+		PUSH	{R1, R2, R3, LR}		// Mando a la pila los registros que modifico y LR
+ 8000374:	b50e      	push	{r1, r2, r3, lr}
+
+		LDR		R1, =0x1
+ 8000376:	490f      	ldr	r1, [pc, #60]	; (80003b4 <delay_dec+0x6>)
+		LSLS	R1,R1,#2
+ 8000378:	0089      	lsls	r1, r1, #2
+		LDR 	R2,=#RCC_APB2ENR
+ 800037a:	4a0f      	ldr	r2, [pc, #60]	; (80003b8 <delay_dec+0xa>)
+		STR		R3,[R2]
+ 800037c:	6013      	str	r3, [r2, #0]
+		ORRS	R3,R2,R3
+ 800037e:	4313      	orrs	r3, r2
+		LDR		R1, =0x1
+ 8000380:	490c      	ldr	r1, [pc, #48]	; (80003b4 <delay_dec+0x6>)
+		LSLS	R1,R1,#2
+ 8000382:	0089      	lsls	r1, r1, #2
+		ORRS	R3,R2,R3
+ 8000384:	4313      	orrs	r3, r2
+
+		LDR 	R1, =(0b11 << 20)
+ 8000386:	490d      	ldr	r1, [pc, #52]	; (80003bc <delay_dec+0xe>)
+		LDR 	R2, =#GPIOC_CHR
+ 8000388:	4a0d      	ldr	r2, [pc, #52]	; (80003c0 <delay_dec+0x12>)
+		STR 	R1, [R2]
+ 800038a:	6011      	str	r1, [r2, #0]
+
+		/*PUERTO A 0 - 7 */
+		/*A0-A3 -> ENTRADA - PULL UP INTERNO
+		  A4-A7 -> SALIDA*/
+		LDR		R1, =#0x11118888
+ 800038c:	490d      	ldr	r1, [pc, #52]	; (80003c4 <delay_dec+0x16>)
+		LDR 	R2, =#GPIOA_CRL
+ 800038e:	4a0e      	ldr	r2, [pc, #56]	; (80003c8 <delay_dec+0x1a>)
+		STR		R1, [R2]
+ 8000390:	6011      	str	r1, [r2, #0]
+
+		LDR 	R1, =#0x0F
+ 8000392:	490e      	ldr	r1, [pc, #56]	; (80003cc <delay_dec+0x1e>)
+		LDR 	R2, =#GPIOA_ODR
+ 8000394:	4a0e      	ldr	r2, [pc, #56]	; (80003d0 <delay_dec+0x22>)
+		STR		R1,[R2]
+ 8000396:	6011      	str	r1, [r2, #0]
+
+		POP		{R1, R2, R3, PC}
+ 8000398:	bd0e      	pop	{r1, r2, r3, pc}
+
+0800039a <led_set>:
+/*	Función led_set. 				 	*/
+/*	Setea el led en funcion de R0		*/
+/****************************************/
+		.type	led_set, %function
+led_set:
+		PUSH	{R0, R1, R2}		// Mando a la pila todos los registros que modifico
+ 800039a:	b407      	push	{r0, r1, r2}
+		MVNS	R0,R0				// R0   = ~R0
+ 800039c:	43c0      	mvns	r0, r0
+		MOVS	R1,#1				// R1   = 0x01
+ 800039e:	2101      	movs	r1, #1
+		ANDS	R0,R0,R1			// R0 & = 0x01
+ 80003a0:	4008      	ands	r0, r1
+		LSLS	R0,R0,#13			// R0 <<= 13
+ 80003a2:	0340      	lsls	r0, r0, #13
+		ldr 	R2, =#PORTC_ODR   	// Escribo la dirección de memoria para setear GPIOC
+ 80003a4:	4a0b      	ldr	r2, [pc, #44]	; (80003d4 <delay_dec+0x26>)
+		STR 	R0, [R2]          	// Escribo el puerto de salida
+ 80003a6:	6010      	str	r0, [r2, #0]
+		POP		{R0, R1, R2}		// Repongo los registros que toqué.
+ 80003a8:	bc07      	pop	{r0, r1, r2}
+		BX		LR					// return
+ 80003aa:	4770      	bx	lr
+
+080003ac <delay>:
+/*	Función delay. 				 		*/
+/*	Recibe por R0 la demora				*/
+/****************************************/
+		.type	delay, %function
+delay:
+		PUSH	{R0, LR}			// Guardo el parámetro y LR en la pila.
+ 80003ac:	b501      	push	{r0, lr}
+
+080003ae <delay_dec>:
+delay_dec:
+        SUBS	R0, 1				//
+ 80003ae:	3801      	subs	r0, #1
+        BNE		delay_dec			// while(--R0);
+ 80003b0:	d1fd      	bne.n	80003ae <delay_dec>
+		POP		{R0, PC}			// repongo R0 y vuelvo.
+ 80003b2:	bd01      	pop	{r0, pc}
+		LDR		R1, =0x1
+ 80003b4:	00000001 	.word	0x00000001
+		LDR 	R2,=#RCC_APB2ENR
+ 80003b8:	40021018 	.word	0x40021018
+		LDR 	R1, =(0b11 << 20)
+ 80003bc:	00300000 	.word	0x00300000
+		LDR 	R2, =#GPIOC_CHR
+ 80003c0:	40011004 	.word	0x40011004
+		LDR		R1, =#0x11118888
+ 80003c4:	11118888 	.word	0x11118888
+		LDR 	R2, =#GPIOA_CRL
+ 80003c8:	40010800 	.word	0x40010800
+		LDR 	R1, =#0x0F
+ 80003cc:	0000000f 	.word	0x0000000f
+		LDR 	R2, =#GPIOA_ODR
+ 80003d0:	4001080c 	.word	0x4001080c
+		ldr 	R2, =#PORTC_ODR   	// Escribo la dirección de memoria para setear GPIOC
+ 80003d4:	4001100c 	.word	0x4001100c
+
+080003d8 <main>:
+/*	main NO TIENE QUE TERMINAR NUNCA	*/
+/****************************************/
+		.type		main, %function
+main:
+
+		BL		gpio_init
+ 80003d8:	f7ff ffcc 	bl	8000374 <gpio_init>
+		BL 		numero_combinacion_init
+ 80003dc:	f7ff ff5c 	bl	8000298 <numero_combinacion_init>
+
+		MOVS	R0,#0
+ 80003e0:	2000      	movs	r0, #0
+		BL		led_set
+ 80003e2:	f7ff ffda 	bl	800039a <led_set>
+
+080003e6 <main_loop>:
+main_loop:
+		BL 		lectura_teclado
+ 80003e6:	f7ff ff0f 	bl	8000208 <lectura_teclado>
+		BL 		debounce_tarea
+ 80003ea:	f7ff fecb 	bl	8000184 <debounce_tarea>
+		BL 		numero_combinacion
+ 80003ee:	f7ff ff59 	bl	80002a4 <numero_combinacion>
+
+		//Demora*8
+		LDR		R0,=#LOOP_COMPARE*8
+ 80003f2:	4806      	ldr	r0, [pc, #24]	; (800040c <for_ever+0xa>)
+		BL		delay
+ 80003f4:	f7ff ffda 	bl	80003ac <delay>
+
+		LDR 	R1,=combinacion
+ 80003f8:	4905      	ldr	r1, [pc, #20]	; (8000410 <for_ever+0xe>)
+		LDR 	R1,[R1] 				// cargo en R1 el contenido de R1 (combinacion)
+ 80003fa:	6809      	ldr	r1, [r1, #0]
+		LDR 	R2,=#COMBINACION_SOFT	//if !(combinacion == COMBINACION_SOFT)
+ 80003fc:	4a05      	ldr	r2, [pc, #20]	; (8000414 <for_ever+0x12>)
+		CMP 	R1,R2
+ 80003fe:	4291      	cmp	r1, r2
+		BNE 	main_loop				//salto a main_loop
+ 8000400:	d1f1      	bne.n	80003e6 <main_loop>
+
+08000402 <for_ever>:
+
+for_ever:								//if combinacion == COMBINACION_SOFT -> prendo el led integrado
+		MOVS	R0,#1
+ 8000402:	2001      	movs	r0, #1
+		BL		led_set
+ 8000404:	f7ff ffc9 	bl	800039a <led_set>
+		B 		for_ever
+ 8000408:	e7fb      	b.n	8000402 <for_ever>
+ 800040a:	0000      	.short	0x0000
+		LDR		R0,=#LOOP_COMPARE*8
+ 800040c:	0017fff8 	.word	0x0017fff8
+		LDR 	R1,=combinacion
+ 8000410:	20000028 	.word	0x20000028
+		LDR 	R2,=#COMBINACION_SOFT	//if !(combinacion == COMBINACION_SOFT)
+ 8000414:	000004d2 	.word	0x000004d2
+
+08000418 <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 8000418:	480d      	ldr	r0, [pc, #52]	; (8000450 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 800041a:	4685      	mov	sp, r0
+/* Call the clock system intitialization function.*/
+  bl  SystemInit
+ 800041c:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 8000420:	480c      	ldr	r0, [pc, #48]	; (8000454 <LoopForever+0x6>)
+  ldr r1, =_edata
+ 8000422:	490d      	ldr	r1, [pc, #52]	; (8000458 <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 8000424:	4a0d      	ldr	r2, [pc, #52]	; (800045c <LoopForever+0xe>)
+  movs r3, #0
+ 8000426:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 8000428:	e002      	b.n	8000430 <LoopCopyDataInit>
+
+0800042a <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 800042a:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 800042c:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 800042e:	3304      	adds	r3, #4
+
+08000430 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 8000430:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 8000432:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 8000434:	d3f9      	bcc.n	800042a <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 8000436:	4a0a      	ldr	r2, [pc, #40]	; (8000460 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 8000438:	4c0a      	ldr	r4, [pc, #40]	; (8000464 <LoopForever+0x16>)
+  movs r3, #0
+ 800043a:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 800043c:	e001      	b.n	8000442 <LoopFillZerobss>
+
+0800043e <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 800043e:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8000440:	3204      	adds	r2, #4
+
+08000442 <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 8000442:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 8000444:	d3fb      	bcc.n	800043e <FillZerobss>
+
+/* Call static constructors */
+  bl __libc_init_array
+ 8000446:	f000 f811 	bl	800046c <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 800044a:	f7ff ffc5 	bl	80003d8 <main>
+
+0800044e <LoopForever>:
+
+LoopForever:
+    b LoopForever
+ 800044e:	e7fe      	b.n	800044e <LoopForever>
+  ldr   r0, =_estack
+ 8000450:	20005000 	.word	0x20005000
+  ldr r0, =_sdata
+ 8000454:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 8000458:	20000000 	.word	0x20000000
+  ldr r2, =_sidata
+ 800045c:	080004d4 	.word	0x080004d4
+  ldr r2, =_sbss
+ 8000460:	20000000 	.word	0x20000000
+  ldr r4, =_ebss
+ 8000464:	20000030 	.word	0x20000030
+
+08000468 <ADC1_2_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 8000468:	e7fe      	b.n	8000468 <ADC1_2_IRQHandler>
+	...
+
+0800046c <__libc_init_array>:
+ 800046c:	b570      	push	{r4, r5, r6, lr}
+ 800046e:	2600      	movs	r6, #0
+ 8000470:	4d0c      	ldr	r5, [pc, #48]	; (80004a4 <__libc_init_array+0x38>)
+ 8000472:	4c0d      	ldr	r4, [pc, #52]	; (80004a8 <__libc_init_array+0x3c>)
+ 8000474:	1b64      	subs	r4, r4, r5
+ 8000476:	10a4      	asrs	r4, r4, #2
+ 8000478:	42a6      	cmp	r6, r4
+ 800047a:	d109      	bne.n	8000490 <__libc_init_array+0x24>
+ 800047c:	f000 f81a 	bl	80004b4 <_init>
+ 8000480:	2600      	movs	r6, #0
+ 8000482:	4d0a      	ldr	r5, [pc, #40]	; (80004ac <__libc_init_array+0x40>)
+ 8000484:	4c0a      	ldr	r4, [pc, #40]	; (80004b0 <__libc_init_array+0x44>)
+ 8000486:	1b64      	subs	r4, r4, r5
+ 8000488:	10a4      	asrs	r4, r4, #2
+ 800048a:	42a6      	cmp	r6, r4
+ 800048c:	d105      	bne.n	800049a <__libc_init_array+0x2e>
+ 800048e:	bd70      	pop	{r4, r5, r6, pc}
+ 8000490:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000494:	4798      	blx	r3
+ 8000496:	3601      	adds	r6, #1
+ 8000498:	e7ee      	b.n	8000478 <__libc_init_array+0xc>
+ 800049a:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800049e:	4798      	blx	r3
+ 80004a0:	3601      	adds	r6, #1
+ 80004a2:	e7f2      	b.n	800048a <__libc_init_array+0x1e>
+ 80004a4:	080004cc 	.word	0x080004cc
+ 80004a8:	080004cc 	.word	0x080004cc
+ 80004ac:	080004cc 	.word	0x080004cc
+ 80004b0:	080004d0 	.word	0x080004d0
+
+080004b4 <_init>:
+ 80004b4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80004b6:	bf00      	nop
+ 80004b8:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80004ba:	bc08      	pop	{r3}
+ 80004bc:	469e      	mov	lr, r3
+ 80004be:	4770      	bx	lr
+
+080004c0 <_fini>:
+ 80004c0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80004c2:	bf00      	nop
+ 80004c4:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80004c6:	bc08      	pop	{r3}
+ 80004c8:	469e      	mov	lr, r3
+ 80004ca:	4770      	bx	lr

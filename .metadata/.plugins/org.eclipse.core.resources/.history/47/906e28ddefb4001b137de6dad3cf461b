@@ -1,0 +1,20 @@
+		.syntax		unified
+		.cpu		cortex-m0
+		.thumb
+
+/****************************************/
+/*	Defino variables en RAM				*/
+/****************************************/
+	.section	.bss
+	.comm	estado		,4
+	.comm	debounce	,4
+	.comm	estado_boton,4
+
+/****************************************/
+/*	Defino constantes de programa		*/
+/****************************************/
+.equ DEBOUNCE_TIME,	10
+
+		.section	.text
+		.align		2
+ 		.global		debounce_init, debounce_tarea

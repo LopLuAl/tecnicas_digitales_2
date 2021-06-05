@@ -1,0 +1,122 @@
+lectura_teclado:
+		PUSH	{R1, R2, R3 LR}		// Mando lo que modifico a la pila
+
+		// Pongo en '1' la primer fila
+
+		LDR		R1, =#1
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#4			// R2 = R1 <<4
+		CMP 	R2,#1
+		BEQ 	TECLA_1_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#5			// R2 = R1 <<5
+		CMP 	R2,#1
+		BEQ 	TECLA_2_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#6			// R2 = R1 <<6
+		CMP 	R2,#1
+		BEQ 	TECLA_3_PRESIONADA
+
+		// Pongo en '1' la SEGUNDA fila
+
+		LDR		R1, =#2
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#4			// R2 = R1 <<4
+		CMP 	R2,#1
+		BEQ 	TECLA_4_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#5			// R2 = R1 <<5
+		CMP 	R2,#1
+		BEQ 	TECLA_5_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#6			// R2 = R1 <<6
+		CMP 	R2,#1
+		BEQ 	TECLA_6_PRESIONADA
+
+		// Pongo en '1' la TERCER fila
+
+		LDR		R1, =#4
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#4			// R2 = R1 <<4
+		CMP 	R2,#1
+		BEQ 	TECLA_7_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#5			// R2 = R1 <<5
+		CMP 	R2,#1
+		BEQ 	TECLA_8_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#6			// R2 = R1 <<6
+		CMP 	R2,#1
+		BEQ 	TECLA_9_PRESIONADA
+
+
+		// Pongo en '1' la cuarta fila
+
+		LDR		R1, =#8
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#4			// R2 = R1 <<4
+		CMP 	R2,#1
+		BEQ 	TECLA_*_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#5			// R2 = R1 <<5
+		CMP 	R2,#1
+		BEQ 	TECLA_0_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R2, R1,#6			// R2 = R1 <<6
+		CMP 	R2,#1
+		BEQ 	TECLA_#_PRESIONADA
+
+TECLA_1_PRESIONADA:
+TECLA_2_PRESIONADA:
+TECLA_3_PRESIONADA:
+TECLA_4_PRESIONADA:
+TECLA_5_PRESIONADA:
+TECLA_6_PRESIONADA:
+TECLA_7_PRESIONADA:
+TECLA_8_PRESIONADA:
+TECLA_9_PRESIONADA:
+TECLA_0_PRESIONADA:
+TECLA_*_PRESIONADA:
+TECLA_#_PRESIONADA:
+
+
+
+
+
+
+
+
+
+
+
+		POP		{R1, R2, PC}		// Devuelvo por R0 el valor del pin y repongo registros
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,242 @@
+		.syntax		unified
+		.cpu		cortex-m0
+		.thumb
+.extern 	debounce_init, debounce_tarea
+/****************************************/
+/*	Defino variables en RAM				*/
+/****************************************/
+.section	.bss
+.comm	tecla,4
+/****************************************/
+/*	Defino constantes de programa		*/
+/****************************************/
+.equ PORTC_ODR,		0x4001100C	// .equ es similar a  #define
+.equ GPIOC_CHR, 	0x40011004	// Puerto GPIOC
+.equ RCC_APB2ENR, 	0x40021018	// Registros
+
+.equ GPIOA_CRL,		0x40010800	// GPIOA - Port configuration register low
+.equ GPIOA_ODR,		0x4001080C
+.equ PORTA_IDR, 	0x40010008	// GPIOA - Port input data register
+
+.equ LOOP_COMPARE, 	0x2ffff		// Demora por software.
+
+		.section	.text
+		.align		2
+ 		.global		main
+
+/****************************************/
+/*	Función main. Acá salta boot.s 		*/
+/*	cuando termina.						*/
+/*	main NO TIENE QUE TERMINAR NUNCA	*/
+/****************************************/
+		.type		main, %function
+main:
+		//Inicializo el pin como salida
+		BL		led_init
+		BL 		debounce_init
+		//Enciendo el led
+main_loop:
+		/*MOVS	R0,#1
+		BL		led_set
+
+
+		//Demora
+		LDR		R0,=#LOOP_COMPARE
+		BL		delay
+
+		//Apago el led
+		MOVS	R0,#0
+		BL		led_set
+
+		//Demora*8
+		LDR		R0,=#LOOP_COMPARE*8
+		BL		delay*/
+
+	BL lectura_teclado
+ BL debounce_tarea
+
+		//Volver a empezar...
+		B		main_loop
+
+
+/****************************************/
+/*	Función led_init. 				 	*/
+/*	Inicializa El LED					*/
+/****************************************/
+		.type	delay, %function
+led_init:
+		PUSH	{R1, R2, LR}		// Mando a la pila los registros que modifico y LR
+		LDR		R1, =(1 << 4)       // Cargo en R1 el bit que me habilita el GPIOC
+		LDR 	R2, =#RCC_APB2ENR   // Cargo la dirección de memoria
+		STR		R1, [R2]            // Habilito la señal de reloj para GPIOC
+									//Pongo GPIOC13 como salida.
+		LDR 	R1, =(0b11 << 20)
+		LDR 	R2, =#GPIOC_CHR
+		STR 	R1, [R2]
+
+		/*HABILITO RELOJ PUERTO A*/
+		LDR		R1, =(1 << 2)
+		LDR 	R2, =#RCC_APB2ENR
+		STR		R1, [R2]
+		/*PUERTO A 0 - 7 COMO ENTRADA PULL - UP*/
+		LDR		R1, =#0x88888888 	//cnf1_X=1 cnf0_x=0 Mode_0_x=0 mode_1_x=1
+		LDR 	R2, =#GPIOA_CRL
+		STR		R1, [R2]
+
+		POP		{R1, R2, PC}
+
+/****************************************/
+/*	Función led_set. 				 	*/
+/*	Setea el led en funcion de R0		*/
+/****************************************/
+		.type	delay, %function
+led_set:
+		PUSH	{R0, R1, R2}		// Mando a la pila todos los registros que modifico
+		MVNS	R0,R0				// R0   = ~R0
+		MOVS	R1,#1				// R1   = 0x01
+		ANDS	R0,R0,R1			// R0 & = 0x01
+		LSLS	R0,R0,#13			// R0 <<= 13
+		ldr 	R2, =#PORTC_ODR   	// Escribo la dirección de memoria para setear GPIOC
+		STR 	R0, [R2]          	// Escribo el puerto de salida
+		POP		{R0, R1, R2}		// Repongo los registros que toqué.
+		BX		LR					// return
+
+/****************************************/
+/*	Función delay. 				 		*/
+/*	Recibe por R0 la demora				*/
+/****************************************/
+		.type	delay, %function
+delay:
+		PUSH	{R0, LR}			// Guardo el parámetro y LR en la pila.
+delay_dec:
+        SUBS	R0, 1				//
+        BNE		delay_dec			// while(--R0);
+		POP		{R0, PC}			// repongo R0 y vuelvo.
+
+		.type	lectura_teclado, 	%function
+lectura_teclado:
+		PUSH	{R1, R2, R3, LR}		// Mando lo que modifico a la pila
+		// Pongo en '1' la primer fila
+		LDR		R1, =#0x7E
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#4			// R2 = R1 <<4
+		CMP 	R0,#1
+		BEQ 	TECLA_1_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#5			// R2 = R1 <<5
+		CMP 	R0,#1
+		BEQ 	TECLA_2_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#6			// R2 = R1 <<6
+		CMP 	R0,#1
+		BEQ 	TECLA_3_PRESIONADA
+
+		// Pongo en '1' la SEGUNDA fila
+
+		LDR		R1, =#0x7D
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#4			// R2 = R1 <<4
+		CMP 	R0,#1
+		BEQ 	TECLA_4_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#5			// R2 = R1 <<5
+		CMP 	R0,#1
+		BEQ 	TECLA_5_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#6			// R2 = R1 <<6
+		CMP 	R0,#1
+		BEQ 	TECLA_6_PRESIONADA
+
+		// Pongo en '1' la TERCER fila
+
+		LDR		R1, =#0x7B
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#4			// R2 = R1 <<4
+		CMP 	R0,#1
+		BEQ 	TECLA_7_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#5			// R2 = R1 <<5
+		CMP 	R0,#1
+		BEQ 	TECLA_8_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#6			// R2 = R1 <<6
+		CMP 	R0,#1
+		BEQ 	TECLA_9_PRESIONADA
+
+
+		// Pongo en '1' la cuarta fila
+
+		LDR		R1, =#0x77
+		LDR 	R2, =#GPIOA_ODR
+		STR		R1, [R2]
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#4			// R2 = R1 <<4
+		CMP 	R0,#1
+		BEQ 	TECLA_ast_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#5			// R2 = R1 <<5
+		CMP 	R0,#1
+		BEQ 	TECLA_0_PRESIONADA
+
+		LDR		R1, =#PORTA_IDR		// R1 dirección de memoria del registro para leer el GPIO
+		LSLS	R0, R1,#6			// R2 = R1 <<6
+		CMP 	R0,#1
+		BEQ 	TECLA_num_PRESIONADA
+
+		LDR		R0,	=#0xff // Si no presione ninguna tecla, cargo con ff
+		POP	{R1, R2, R3,PC}		// Mando lo que modifico a la pila
+
+TECLA_1_PRESIONADA:
+		LDR		R0, =#1
+		POP	{R1, R2, R3, PC}	// Mando lo que modifico a la pila
+TECLA_2_PRESIONADA:
+		LDR		R0, =#2
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_3_PRESIONADA:
+		LDR		R0, =#3
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_4_PRESIONADA:
+		LDR		R0, =#4
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_5_PRESIONADA:
+		LDR		R0, =#5
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_6_PRESIONADA:
+		LDR		R0, =#6
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_7_PRESIONADA:
+		LDR		R0, =#7
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_8_PRESIONADA:
+		LDR		R0, =#8
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_9_PRESIONADA:
+		LDR		R0, =#9
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_0_PRESIONADA:
+		LDR		R0, =#10
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_ast_PRESIONADA:
+		LDR		R0, =#11
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+TECLA_num_PRESIONADA:
+		LDR		R0, =#12
+		POP	{R1, R2, R3, PC}		// Mando lo que modifico a la pila
+.end

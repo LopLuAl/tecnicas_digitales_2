@@ -1,0 +1,163 @@
+17:13:48 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/lectura_teclado.d" -MT"Src/lectura_teclado.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/lectura_teclado.o" "../Src/lectura_teclado.s"
+arm-none-eabi-gcc -o "Cerradura_TD2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/Cerradura_TD2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura_TD2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Cerradura_TD2.elf
+ 
+arm-none-eabi-objdump -h -S  Cerradura_TD2.elf  > "Cerradura_TD2.list"
+arm-none-eabi-objcopy  -O binary  Cerradura_TD2.elf  "Cerradura_TD2.bin"
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+Finished building: Cerradura_TD2.bin
+ 
+ 
+Finished building: Cerradura_TD2.list
+ 
+17:14:00 **** Incremental Build of configuration Debug for project Cerradura ****
+make -j8 all 
+arm-none-eabi-gcc -o "Cerradura.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.6.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.linux64_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/bin/ld: Src/cerradura.o: in function `main_loop':
+/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/Debug/../Src/cerradura.s:46: undefined reference to `lectura_teclado'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: Cerradura.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:14:01 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/lectura_teclado.d" -MT"Src/lectura_teclado.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/lectura_teclado.o" "../Src/lectura_teclado.s"
+arm-none-eabi-gcc -o "Cerradura_TD2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/Cerradura_TD2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura_TD2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Cerradura_TD2.elf
+ 
+arm-none-eabi-objdump -h -S  Cerradura_TD2.elf  > "Cerradura_TD2.list"
+arm-none-eabi-objcopy  -O binary  Cerradura_TD2.elf  "Cerradura_TD2.bin"
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+Finished building: Cerradura_TD2.bin
+ 
+ 
+Finished building: Cerradura_TD2.list
+ 
+17:14:09 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+ 
+17:14:58 **** Incremental Build of configuration Debug for project Cerradura ****
+make -j8 all 
+arm-none-eabi-gcc -o "Cerradura.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.6.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.linux64_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/bin/ld: Src/cerradura.o: in function `main_loop':
+/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/Debug/../Src/cerradura.s:46: undefined reference to `lectura_teclado'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: Cerradura.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:14:58 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/led.d" -MT"Src/led.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/led.o" "../Src/led.s"
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o" "../Src/main.s"
+arm-none-eabi-gcc -o "Cerradura_TD2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/Cerradura_TD2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura_TD2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.6.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.linux64_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/bin/ld: Src/main.o: in function `main':
+/home/luciano/STM32CubeIDE/workspace_1.6.0/Cerradura_TD2/Debug/../Src/main.s:57: undefined reference to `gpio_init'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: Cerradura_TD2.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:15:10 **** Incremental Build of configuration Debug for project Cerradura ****
+make -j8 all 
+arm-none-eabi-gcc -o "Cerradura.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.6.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.linux64_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/bin/ld: Src/cerradura.o: in function `main_loop':
+/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/Debug/../Src/cerradura.s:46: undefined reference to `lectura_teclado'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: Cerradura.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:15:10 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/led.d" -MT"Src/led.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/led.o" "../Src/led.s"
+arm-none-eabi-gcc -o "Cerradura_TD2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/Cerradura_TD2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura_TD2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Cerradura_TD2.elf
+ 
+arm-none-eabi-objdump -h -S  Cerradura_TD2.elf  > "Cerradura_TD2.list"
+arm-none-eabi-objcopy  -O binary  Cerradura_TD2.elf  "Cerradura_TD2.bin"
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+Finished building: Cerradura_TD2.bin
+ 
+ 
+Finished building: Cerradura_TD2.list
+ 
+17:18:36 **** Incremental Build of configuration Debug for project Cerradura ****
+make -j8 all 
+arm-none-eabi-gcc -o "Cerradura.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.6.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.linux64_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/bin/ld: Src/cerradura.o: in function `main_loop':
+/home/luciano/Documents/TD2/clase_04_interfaz_c_asm/clase_04_interfaz_casm_material/led_asm/ledasm/Debug/../Src/cerradura.s:46: undefined reference to `lectura_teclado'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: Cerradura.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:18:36 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/lectura_teclado.d" -MT"Src/lectura_teclado.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/lectura_teclado.o" "../Src/lectura_teclado.s"
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o" "../Src/main.s"
+arm-none-eabi-gcc -o "Cerradura_TD2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/Cerradura_TD2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura_TD2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Cerradura_TD2.elf
+ 
+arm-none-eabi-objdump -h -S  Cerradura_TD2.elf  > "Cerradura_TD2.list"
+arm-none-eabi-objcopy  -O binary  Cerradura_TD2.elf  "Cerradura_TD2.bin"
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Cerradura_TD2.bin
+ 
+Finished building: Cerradura_TD2.list
+ 
+17:18:53 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+ 
+17:19:40 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m3 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Src/antirrebote.d" -MT"Src/antirrebote.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/antirrebote.o" "../Src/antirrebote.s"
+arm-none-eabi-gcc -o "Cerradura_TD2.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/Cerradura_TD2/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cerradura_TD2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Cerradura_TD2.elf
+ 
+arm-none-eabi-objdump -h -S  Cerradura_TD2.elf  > "Cerradura_TD2.list"
+arm-none-eabi-objcopy  -O binary  Cerradura_TD2.elf  "Cerradura_TD2.bin"
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+ 
+Finished building: Cerradura_TD2.bin
+ 
+Finished building: Cerradura_TD2.list
+ 
+21:17:28 **** Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+ 
+21:17:29 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+ 
+21:18:17 **** Incremental Build of configuration Debug for project Cerradura_TD2 ****
+make -j8 all 
+arm-none-eabi-size   Cerradura_TD2.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1228	      8	   1584	   2820	    b04	Cerradura_TD2.elf
+Finished building: default.size.stdout
+ 

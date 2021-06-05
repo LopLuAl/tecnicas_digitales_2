@@ -1,0 +1,711 @@
+
+antirrebote_nucleo.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   00000194  08000000  08000000  00010000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00000290  08000194  08000194  00010194  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  08000424  0800042c  0001042c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .ARM.extab    00000000  08000424  08000424  0001042c  2**0
+                  CONTENTS
+  4 .ARM          00000000  08000424  08000424  0001042c  2**0
+                  CONTENTS
+  5 .preinit_array 00000000  08000424  0800042c  0001042c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  08000424  08000424  00010424  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  7 .fini_array   00000004  08000428  08000428  00010428  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  8 .data         00000000  20000000  20000000  0001042c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .bss          00000030  20000000  0800042c  00020000  2**2
+                  ALLOC
+ 10 ._user_heap_stack 00000600  20000030  0800042c  00020030  2**0
+                  ALLOC
+ 11 .ARM.attributes 00000030  00000000  00000000  0001042c  2**0
+                  CONTENTS, READONLY
+ 12 .debug_line   0000025b  00000000  00000000  0001045c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_info   000000ba  00000000  00000000  000106b7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_abbrev 00000062  00000000  00000000  00010771  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 15 .debug_aranges 000000a8  00000000  00000000  000107d8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+ 16 .debug_str    000000cb  00000000  00000000  00010880  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 17 .debug_ranges 00000020  00000000  00000000  00010950  2**3
+                  CONTENTS, READONLY, DEBUGGING
+ 18 .debug_frame  0000002c  00000000  00000000  00010970  2**2
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+08000194 <__do_global_dtors_aux>:
+ 8000194:	b510      	push	{r4, lr}
+ 8000196:	4c05      	ldr	r4, [pc, #20]	; (80001ac <__do_global_dtors_aux+0x18>)
+ 8000198:	7823      	ldrb	r3, [r4, #0]
+ 800019a:	b933      	cbnz	r3, 80001aa <__do_global_dtors_aux+0x16>
+ 800019c:	4b04      	ldr	r3, [pc, #16]	; (80001b0 <__do_global_dtors_aux+0x1c>)
+ 800019e:	b113      	cbz	r3, 80001a6 <__do_global_dtors_aux+0x12>
+ 80001a0:	4804      	ldr	r0, [pc, #16]	; (80001b4 <__do_global_dtors_aux+0x20>)
+ 80001a2:	f3af 8000 	nop.w
+ 80001a6:	2301      	movs	r3, #1
+ 80001a8:	7023      	strb	r3, [r4, #0]
+ 80001aa:	bd10      	pop	{r4, pc}
+ 80001ac:	20000000 	.word	0x20000000
+ 80001b0:	00000000 	.word	0x00000000
+ 80001b4:	0800040c 	.word	0x0800040c
+
+080001b8 <frame_dummy>:
+ 80001b8:	b508      	push	{r3, lr}
+ 80001ba:	4b03      	ldr	r3, [pc, #12]	; (80001c8 <frame_dummy+0x10>)
+ 80001bc:	b11b      	cbz	r3, 80001c6 <frame_dummy+0xe>
+ 80001be:	4903      	ldr	r1, [pc, #12]	; (80001cc <frame_dummy+0x14>)
+ 80001c0:	4803      	ldr	r0, [pc, #12]	; (80001d0 <frame_dummy+0x18>)
+ 80001c2:	f3af 8000 	nop.w
+ 80001c6:	bd08      	pop	{r3, pc}
+ 80001c8:	00000000 	.word	0x00000000
+ 80001cc:	20000004 	.word	0x20000004
+ 80001d0:	0800040c 	.word	0x0800040c
+
+080001d4 <debounce_init>:
+/*	Inicializa la máquina de estados.	*/
+/*	pone todas las variables a cero		*/
+/****************************************/
+		.type		debounce_init, %function
+debounce_init:
+		PUSH	{R0, R1}
+ 80001d4:	b403      	push	{r0, r1}
+		MOVS	R0,#0
+ 80001d6:	2000      	movs	r0, #0
+		LDR		R1,=estado
+ 80001d8:	491f      	ldr	r1, [pc, #124]	; (8000258 <debounce_salir+0xe>)
+		STR		R0,[R1]
+ 80001da:	6008      	str	r0, [r1, #0]
+		LDR		R1,=debounce
+ 80001dc:	491f      	ldr	r1, [pc, #124]	; (800025c <debounce_salir+0x12>)
+		STR		R0,[R1]
+ 80001de:	6008      	str	r0, [r1, #0]
+		LDR		R1,=estado_boton
+ 80001e0:	491f      	ldr	r1, [pc, #124]	; (8000260 <debounce_salir+0x16>)
+		STR		R0,[R1]
+ 80001e2:	6008      	str	r0, [r1, #0]
+		POP		{R0, R1}
+ 80001e4:	bc03      	pop	{r0, r1}
+		BX		LR
+ 80001e6:	4770      	bx	lr
+
+080001e8 <debounce_tarea>:
+/*	cero es presionado.					*/
+/*  devuelvo por R0 estado_boton		*/
+/****************************************/
+		.type		debounce_tarea, %function
+debounce_tarea:
+		PUSH	{R1, R2, R3}
+ 80001e8:	b40e      	push	{r1, r2, r3}
+		//Leo la variable de estado.
+		LDR		R1,=estado
+ 80001ea:	491b      	ldr	r1, [pc, #108]	; (8000258 <debounce_salir+0xe>)
+		LDR 	R2,[R1]
+ 80001ec:	680a      	ldr	r2, [r1, #0]
+
+080001ee <debounce_estado_cero>:
+debounce_estado_cero:
+		CMP 	R2,#0
+ 80001ee:	2a00      	cmp	r2, #0
+		BNE 	debounce_estado_uno
+ 80001f0:	d106      	bne.n	8000200 <debounce_estado_uno>
+		//Ejecuto el código del estado cero.
+		CMP 	R0,#0
+ 80001f2:	2800      	cmp	r0, #0
+		BNE 	debounce_salir
+ 80001f4:	d129      	bne.n	800024a <debounce_salir>
+
+080001f6 <debounce_carga>:
+		//Si está presionado debounce=DEBOUNCE_TIME y voy a estado_uno.
+debounce_carga:
+		LDR 	R1,=debounce
+ 80001f6:	4919      	ldr	r1, [pc, #100]	; (800025c <debounce_salir+0x12>)
+		LDR 	R0,=#DEBOUNCE_TIME
+ 80001f8:	481a      	ldr	r0, [pc, #104]	; (8000264 <debounce_salir+0x1a>)
+		STR 	R0,[R1]
+ 80001fa:	6008      	str	r0, [r1, #0]
+		ADDS 	R2, #1
+ 80001fc:	3201      	adds	r2, #1
+		B 		debounce_salir
+ 80001fe:	e024      	b.n	800024a <debounce_salir>
+
+08000200 <debounce_estado_uno>:
+debounce_estado_uno:
+		CMP 	R2,#1
+ 8000200:	2a01      	cmp	r2, #1
+		BNE 	debounce_estado_dos
+ 8000202:	d110      	bne.n	8000226 <debounce_estado_dos>
+		LDR		R1,=debounce
+ 8000204:	4915      	ldr	r1, [pc, #84]	; (800025c <debounce_salir+0x12>)
+		LDR 	R3,[R1]
+ 8000206:	680b      	ldr	r3, [r1, #0]
+		SUBS 	R3,#1
+ 8000208:	3b01      	subs	r3, #1
+		STR 	R3,[R1]	//debounce--
+ 800020a:	600b      	str	r3, [r1, #0]
+		CMP		R3,#0
+ 800020c:	2b00      	cmp	r3, #0
+		BNE		debounce_salir
+ 800020e:	d11c      	bne.n	800024a <debounce_salir>
+		CMP		R0,#0	//Se venció el antirrebote y está presionado.
+ 8000210:	2800      	cmp	r0, #0
+		BNE		debounce_estado_uno_2
+ 8000212:	d106      	bne.n	8000222 <debounce_estado_uno_2>
+		LDR		R1,=estado_boton
+ 8000214:	4912      	ldr	r1, [pc, #72]	; (8000260 <debounce_salir+0x16>)
+		LDR		R3,[R1]
+ 8000216:	680b      	ldr	r3, [r1, #0]
+		MOVS	R0,#1
+ 8000218:	2001      	movs	r0, #1
+		EORS	R3,R0
+ 800021a:	4043      	eors	r3, r0
+		STR		R3,[R1]
+ 800021c:	600b      	str	r3, [r1, #0]
+		ADDS	R2,#1
+ 800021e:	3201      	adds	r2, #1
+		B		debounce_salir
+ 8000220:	e013      	b.n	800024a <debounce_salir>
+
+08000222 <debounce_estado_uno_2>:
+debounce_estado_uno_2:
+		SUBS	R2,#1
+ 8000222:	3a01      	subs	r2, #1
+		B		debounce_salir
+ 8000224:	e011      	b.n	800024a <debounce_salir>
+
+08000226 <debounce_estado_dos>:
+debounce_estado_dos:
+		CMP 	R2,#2
+ 8000226:	2a02      	cmp	r2, #2
+		BNE 	debounce_estado_tres
+ 8000228:	d102      	bne.n	8000230 <debounce_estado_tres>
+		CMP 	R0,#0
+ 800022a:	2800      	cmp	r0, #0
+		BEQ 	debounce_salir
+ 800022c:	d00d      	beq.n	800024a <debounce_salir>
+		B		debounce_carga
+ 800022e:	e7e2      	b.n	80001f6 <debounce_carga>
+
+08000230 <debounce_estado_tres>:
+debounce_estado_tres:
+		CMP	R2, #3
+ 8000230:	2a03      	cmp	r2, #3
+		BNE debounce_salir
+ 8000232:	d10a      	bne.n	800024a <debounce_salir>
+		LDR		R1,=debounce
+ 8000234:	4909      	ldr	r1, [pc, #36]	; (800025c <debounce_salir+0x12>)
+		LDR 	R3,[R1]
+ 8000236:	680b      	ldr	r3, [r1, #0]
+		SUBS 	R3,#1
+ 8000238:	3b01      	subs	r3, #1
+		STR 	R3,[R1]
+ 800023a:	600b      	str	r3, [r1, #0]
+		CMP		R3,#0
+ 800023c:	2b00      	cmp	r3, #0
+		BNE		debounce_salir
+ 800023e:	d104      	bne.n	800024a <debounce_salir>
+		CMP		R0,#0
+ 8000240:	2800      	cmp	r0, #0
+		BEQ		debounce_estado_tres_2
+ 8000242:	d001      	beq.n	8000248 <debounce_estado_tres_2>
+		MOVS	R2,#0
+ 8000244:	2200      	movs	r2, #0
+		B		debounce_salir
+ 8000246:	e000      	b.n	800024a <debounce_salir>
+
+08000248 <debounce_estado_tres_2>:
+debounce_estado_tres_2:
+		SUBS	R2,#1
+ 8000248:	3a01      	subs	r2, #1
+
+0800024a <debounce_salir>:
+debounce_salir:
+		LDR	R1,=estado
+ 800024a:	4903      	ldr	r1, [pc, #12]	; (8000258 <debounce_salir+0xe>)
+		STR R2,[R1]
+ 800024c:	600a      	str	r2, [r1, #0]
+		LDR R1,=estado_boton
+ 800024e:	4904      	ldr	r1, [pc, #16]	; (8000260 <debounce_salir+0x16>)
+		LDR R0,[R1]
+ 8000250:	6808      	ldr	r0, [r1, #0]
+		POP		{R1, R2, R3}
+ 8000252:	bc0e      	pop	{r1, r2, r3}
+		BX		LR
+ 8000254:	4770      	bx	lr
+ 8000256:	0000      	.short	0x0000
+		LDR		R1,=estado
+ 8000258:	20000020 	.word	0x20000020
+		LDR		R1,=debounce
+ 800025c:	20000024 	.word	0x20000024
+		LDR		R1,=estado_boton
+ 8000260:	2000001c 	.word	0x2000001c
+		LDR 	R0,=#DEBOUNCE_TIME
+ 8000264:	00000014 	.word	0x00000014
+
+08000268 <dwt_init>:
+/*	Función dwt_init. 				 	*/
+/*	Inicializa el contador dwt			*/
+/****************************************/
+		.type	dwt_init, %function
+dwt_init:
+		PUSH	{R0, R1, R2}
+ 8000268:	b407      	push	{r0, r1, r2}
+		MOVS	R0,#1
+ 800026a:	2001      	movs	r0, #1
+		LDR		R1,=#DWT_CONTROL
+ 800026c:	4908      	ldr	r1, [pc, #32]	; (8000290 <dwt_read+0xc>)
+		LDR		R2,[R1]
+ 800026e:	680a      	ldr	r2, [r1, #0]
+		ORRS	R2,R2,R0
+ 8000270:	4302      	orrs	r2, r0
+		STR		R2,[R1]
+ 8000272:	600a      	str	r2, [r1, #0]
+		POP		{R0, R1, R2}
+ 8000274:	bc07      	pop	{r0, r1, r2}
+		BX		LR
+ 8000276:	4770      	bx	lr
+
+08000278 <dwt_reset>:
+/*	Función dwt_reset. 				 	*/
+/*	Pone DWT a cero						*/
+/****************************************/
+		.type	dwt_reset, %function
+dwt_reset:
+		PUSH	{R0, R1}
+ 8000278:	b403      	push	{r0, r1}
+		EORS	R0,R0,R0
+ 800027a:	4040      	eors	r0, r0
+		LDR		R1,=#DWT_CYCCNT
+ 800027c:	4905      	ldr	r1, [pc, #20]	; (8000294 <dwt_read+0x10>)
+		STR		R0,[R1]
+ 800027e:	6008      	str	r0, [r1, #0]
+		POP		{R0, R1}
+ 8000280:	bc03      	pop	{r0, r1}
+		BX		LR
+ 8000282:	4770      	bx	lr
+
+08000284 <dwt_read>:
+/*	Función dwt_read. 				 	*/
+/*	Pone en R0 el valor de DWT			*/
+/****************************************/
+		.type	dwt_read, %function
+dwt_read:
+		PUSH	{R1}
+ 8000284:	b402      	push	{r1}
+		LDR		R1,=#DWT_CYCCNT
+ 8000286:	4903      	ldr	r1, [pc, #12]	; (8000294 <dwt_read+0x10>)
+		LDR		R0,[R1]
+ 8000288:	6808      	ldr	r0, [r1, #0]
+		POP		{R1}
+ 800028a:	bc02      	pop	{r1}
+		BX		LR
+ 800028c:	4770      	bx	lr
+ 800028e:	0000      	.short	0x0000
+		LDR		R1,=#DWT_CONTROL
+ 8000290:	e0001000 	.word	0xe0001000
+		LDR		R1,=#DWT_CYCCNT
+ 8000294:	e0001004 	.word	0xe0001004
+
+08000298 <main>:
+		/*	-led y pulsador	  */
+		/*  -fsm antirrebote  */
+		/*	-tics_led=LED_TICK*/
+		/*  -estado_led=0     */
+		/**********************/
+		BL		dwt_init
+ 8000298:	f7ff ffe6 	bl	8000268 <dwt_init>
+		BL		board_init
+ 800029c:	f000 f838 	bl	8000310 <board_init>
+		BL		debounce_init
+ 80002a0:	f7ff ff98 	bl	80001d4 <debounce_init>
+		LDR		R0,=#LED_TICK
+ 80002a4:	4815      	ldr	r0, [pc, #84]	; (80002fc <toggle_led_sale+0x4>)
+		LDR		R1,=tics_led
+ 80002a6:	4916      	ldr	r1, [pc, #88]	; (8000300 <toggle_led_sale+0x8>)
+		STR		R0,[R1]
+ 80002a8:	6008      	str	r0, [r1, #0]
+		MOVS	R0,#0
+ 80002aa:	2000      	movs	r0, #0
+		LDR		R1,=estado_led
+ 80002ac:	4915      	ldr	r1, [pc, #84]	; (8000304 <toggle_led_sale+0xc>)
+		STR		R0,[R1]
+ 80002ae:	6008      	str	r0, [r1, #0]
+
+080002b0 <main_loop>:
+main_loop:
+		BL		b1_read				//Leo el pulsador.
+ 80002b0:	f000 f84b 	bl	800034a <b1_read>
+		BL		debounce_tarea		//FSM Antirrebote
+ 80002b4:	f7ff ff98 	bl	80001e8 <debounce_tarea>
+		LDR		R1,=estado_boton	//Devuelve estado en R0
+ 80002b8:	4913      	ldr	r1, [pc, #76]	; (8000308 <toggle_led_sale+0x10>)
+		STR		R0,[R1]				//Estado del pulsador.
+ 80002ba:	6008      	str	r0, [r1, #0]
+
+		LDR		R1,=tics_led		//Como main_loop se ejecuta
+ 80002bc:	4910      	ldr	r1, [pc, #64]	; (8000300 <toggle_led_sale+0x8>)
+		LDR		R0,[R1]				//(aproximadamente) cada 1ms
+ 80002be:	6808      	ldr	r0, [r1, #0]
+		SUBS	R0,#1				//decremento tics_led en casa
+ 80002c0:	3801      	subs	r0, #1
+		CMP		R0,#0				//pasada y cuenta vale 0, recargo
+ 80002c2:	2800      	cmp	r0, #0
+		BNE		main_actualiza_led	//e intento ejecutar toggle_led
+ 80002c4:	d106      	bne.n	80002d4 <main_actualiza_led>
+		LDR		R0,=#LED_TICK		//if(!--tics_led) {
+ 80002c6:	480d      	ldr	r0, [pc, #52]	; (80002fc <toggle_led_sale+0x4>)
+		LDR		R2,=estado_boton	//  tics_led = LED_TICK;
+ 80002c8:	4a0f      	ldr	r2, [pc, #60]	; (8000308 <toggle_led_sale+0x10>)
+		LDR		R3,[R2]				//  if(!estado_boton)
+ 80002ca:	6813      	ldr	r3, [r2, #0]
+		CMP		R3,#0				//    toggle_led();
+ 80002cc:	2b00      	cmp	r3, #0
+		BNE		main_actualiza_led	//}
+ 80002ce:	d101      	bne.n	80002d4 <main_actualiza_led>
+		BL		toggle_led			//Invierto estado del led.
+ 80002d0:	f000 f805 	bl	80002de <toggle_led>
+
+080002d4 <main_actualiza_led>:
+main_actualiza_led:					//
+		STR		R0,[R1]				//guarda tics_led en memoria RAM
+ 80002d4:	6008      	str	r0, [r1, #0]
+		/**********************/
+		/* Demora de 1ms 	  */
+		/* antes de volver a  */
+		/* ejecutar main_loop */
+		/**********************/
+		LDR		R1,=#ESPERA_1MS
+ 80002d6:	490d      	ldr	r1, [pc, #52]	; (800030c <toggle_led_sale+0x14>)
+
+080002d8 <main_espera_1ms>:
+main_espera_1ms:
+		SUBS	R1,#1
+ 80002d8:	3901      	subs	r1, #1
+		BNE		main_espera_1ms
+ 80002da:	d1fd      	bne.n	80002d8 <main_espera_1ms>
+		B		main_loop
+ 80002dc:	e7e8      	b.n	80002b0 <main_loop>
+
+080002de <toggle_led>:
+/*	después usa para invertir			*/
+/*										*/
+/****************************************/
+.type		toggle_led, %function
+toggle_led:
+		PUSH	{R0, R1, R2, LR}
+ 80002de:	b507      	push	{r0, r1, r2, lr}
+		MOVS	R2,#1
+ 80002e0:	2201      	movs	r2, #1
+		LDR		R1,=estado_led
+ 80002e2:	4908      	ldr	r1, [pc, #32]	; (8000304 <toggle_led_sale+0xc>)
+		LDR		R0,[R1]
+ 80002e4:	6808      	ldr	r0, [r1, #0]
+		EORS	R0,R0,R2
+ 80002e6:	4050      	eors	r0, r2
+		STR		R0,[R1]
+ 80002e8:	6008      	str	r0, [r1, #0]
+		CMP		R0,#0
+ 80002ea:	2800      	cmp	r0, #0
+		BEQ		toggle_led_cero
+ 80002ec:	d002      	beq.n	80002f4 <toggle_led_cero>
+		BL		led_set
+ 80002ee:	f000 f81e 	bl	800032e <led_set>
+		B		toggle_led_sale
+ 80002f2:	e001      	b.n	80002f8 <toggle_led_sale>
+
+080002f4 <toggle_led_cero>:
+toggle_led_cero:
+		BL		led_reset
+ 80002f4:	f000 f822 	bl	800033c <led_reset>
+
+080002f8 <toggle_led_sale>:
+toggle_led_sale:
+		POP		{R0, R1, R2, PC}
+ 80002f8:	bd07      	pop	{r0, r1, r2, pc}
+ 80002fa:	0000      	.short	0x0000
+		LDR		R0,=#LED_TICK
+ 80002fc:	000000fa 	.word	0x000000fa
+		LDR		R1,=tics_led
+ 8000300:	20000028 	.word	0x20000028
+		LDR		R1,=estado_led
+ 8000304:	2000002c 	.word	0x2000002c
+		LDR		R1,=estado_boton	//Devuelve estado en R0
+ 8000308:	2000001c 	.word	0x2000001c
+		LDR		R1,=#ESPERA_1MS
+ 800030c:	000014d5 	.word	0x000014d5
+
+08000310 <board_init>:
+/*	Función led_init. 				 	*/
+/*	Inicializa El LED					*/
+/****************************************/
+		.type	board_init, %function
+board_init:
+		PUSH	{R0, R1, R2, R3, LR}	// Mando a la pila los registros que modifico y LR
+ 8000310:	b50f      	push	{r0, r1, r2, r3, lr}
+		LDR		R0,	=#RCC_AHB1ENR		// Dirección de memoria para habilitar clk en GPIO
+ 8000312:	4811      	ldr	r0, [pc, #68]	; (8000358 <b1_read+0xe>)
+		LDR		R3, [R0]				// Leo el registro
+ 8000314:	6803      	ldr	r3, [r0, #0]
+		LDR		R1, =#GPIOAEN			//
+ 8000316:	4911      	ldr	r1, [pc, #68]	; (800035c <b1_read+0x12>)
+		LDR		R2, =#GPIOCEN			// Bits para habilitar PORTC y PORTA
+ 8000318:	4a11      	ldr	r2, [pc, #68]	; (8000360 <b1_read+0x16>)
+		ORRS	R3, R1					//
+ 800031a:	430b      	orrs	r3, r1
+		ORRS	R3, R2					// Habilito los bits en cuestión
+ 800031c:	4313      	orrs	r3, r2
+		STR		R3, [R0]				// Escribo el registro.
+ 800031e:	6003      	str	r3, [r0, #0]
+		LDR		R0, =#PORTA_MODER
+ 8000320:	4810      	ldr	r0, [pc, #64]	; (8000364 <b1_read+0x1a>)
+		LDR		R3, [R0]
+ 8000322:	6803      	ldr	r3, [r0, #0]
+		MOVS	R1, #0x01
+ 8000324:	2101      	movs	r1, #1
+		LSLS	R1, R1, #10
+ 8000326:	0289      	lsls	r1, r1, #10
+		ORRS	R3, R1
+ 8000328:	430b      	orrs	r3, r1
+		STR		R3, [R0]				//Leo la configuración de GPIOA y pongo A5 como salida
+ 800032a:	6003      	str	r3, [r0, #0]
+		POP		{R0, R1, R2, R3, PC}
+ 800032c:	bd0f      	pop	{r0, r1, r2, r3, pc}
+
+0800032e <led_set>:
+/*	Función led_set. 				 	*/
+/*	Setea el led						*/
+/****************************************/
+		.type	led_set, %function
+led_set:
+		PUSH	{R0, R1}			// Mando a la pila todos los registros que modifico
+ 800032e:	b403      	push	{r0, r1}
+		MOVS	R0,#1				// R1   = 0x01
+ 8000330:	2001      	movs	r0, #1
+		LSLS	R0,R0,#5			// R0 <<= 5
+ 8000332:	0140      	lsls	r0, r0, #5
+		ldr 	R1, =#PORTA_BSRR   	// Escribo la dirección de memoria para setear GPIOA
+ 8000334:	490c      	ldr	r1, [pc, #48]	; (8000368 <b1_read+0x1e>)
+		STR 	R0, [R1]          	// Escribo el puerto de salida
+ 8000336:	6008      	str	r0, [r1, #0]
+		POP		{R0, R1}			// Repongo los registros que toqué.
+ 8000338:	bc03      	pop	{r0, r1}
+		BX		LR					// return
+ 800033a:	4770      	bx	lr
+
+0800033c <led_reset>:
+/*	Función led_reset. 				 	*/
+/*	Resetea el led						*/
+/****************************************/
+		.type	led_reset, %function
+led_reset:
+		PUSH	{R0, R1}			// Mando a la pila todos los registros que modifico
+ 800033c:	b403      	push	{r0, r1}
+		MOVS	R0,#1				// R1   = 0x01
+ 800033e:	2001      	movs	r0, #1
+		LSLS	R0,R0,#21			// R0 <<= 21
+ 8000340:	0540      	lsls	r0, r0, #21
+		LDR 	R1, =#PORTA_BSRR   	// Escribo la dirección de memoria para setear GPIOA
+ 8000342:	4909      	ldr	r1, [pc, #36]	; (8000368 <b1_read+0x1e>)
+		STR 	R0, [R1]          	// Escribo el puerto de salida
+ 8000344:	6008      	str	r0, [r1, #0]
+		POP		{R0, R1}			// Repongo los registros que toqué.
+ 8000346:	bc03      	pop	{r0, r1}
+		BX		LR					// return
+ 8000348:	4770      	bx	lr
+
+0800034a <b1_read>:
+/*	Función b1_read. 				 	*/
+/*	Lee el pulsador B1					*/
+/****************************************/
+		.type	b1_read, 	%function
+b1_read:
+		PUSH	{R1, R2, LR}		// Mando lo que modifico a la pila
+ 800034a:	b506      	push	{r1, r2, lr}
+		LDR		R2, =#1				// R2 = 1 (se puede usar MOVS para 1)
+ 800034c:	4a03      	ldr	r2, [pc, #12]	; (800035c <b1_read+0x12>)
+		LSLS	R2, R2,#13			// R2 = R2 <<13
+ 800034e:	0352      	lsls	r2, r2, #13
+		LDR		R1, =#PORTC_IDR		// R1 dirección de memoria del registro para leer el GPIO
+ 8000350:	4906      	ldr	r1, [pc, #24]	; (800036c <b1_read+0x22>)
+		LDR		R0, [R1]			// Me traigo el valor del registro a R1
+ 8000352:	6808      	ldr	r0, [r1, #0]
+		ANDS	R0, R0, R2			// Enmascaro R0 = R0 & (1<<13)
+ 8000354:	4010      	ands	r0, r2
+		POP		{R1, R2, PC}		// Devuelvo por R0 el valor del pin y repongo registros
+ 8000356:	bd06      	pop	{r1, r2, pc}
+		LDR		R0,	=#RCC_AHB1ENR		// Dirección de memoria para habilitar clk en GPIO
+ 8000358:	40023830 	.word	0x40023830
+		LDR		R1, =#GPIOAEN			//
+ 800035c:	00000001 	.word	0x00000001
+		LDR		R2, =#GPIOCEN			// Bits para habilitar PORTC y PORTA
+ 8000360:	00000004 	.word	0x00000004
+		LDR		R0, =#PORTA_MODER
+ 8000364:	40020000 	.word	0x40020000
+		ldr 	R1, =#PORTA_BSRR   	// Escribo la dirección de memoria para setear GPIOA
+ 8000368:	40020018 	.word	0x40020018
+		LDR		R1, =#PORTC_IDR		// R1 dirección de memoria del registro para leer el GPIO
+ 800036c:	40020810 	.word	0x40020810
+
+08000370 <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 8000370:	480d      	ldr	r0, [pc, #52]	; (80003a8 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 8000372:	4685      	mov	sp, r0
+/* Call the clock system intitialization function.*/
+  bl  SystemInit
+ 8000374:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 8000378:	480c      	ldr	r0, [pc, #48]	; (80003ac <LoopForever+0x6>)
+  ldr r1, =_edata
+ 800037a:	490d      	ldr	r1, [pc, #52]	; (80003b0 <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 800037c:	4a0d      	ldr	r2, [pc, #52]	; (80003b4 <LoopForever+0xe>)
+  movs r3, #0
+ 800037e:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 8000380:	e002      	b.n	8000388 <LoopCopyDataInit>
+
+08000382 <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 8000382:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 8000384:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 8000386:	3304      	adds	r3, #4
+
+08000388 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 8000388:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 800038a:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 800038c:	d3f9      	bcc.n	8000382 <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 800038e:	4a0a      	ldr	r2, [pc, #40]	; (80003b8 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 8000390:	4c0a      	ldr	r4, [pc, #40]	; (80003bc <LoopForever+0x16>)
+  movs r3, #0
+ 8000392:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 8000394:	e001      	b.n	800039a <LoopFillZerobss>
+
+08000396 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 8000396:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8000398:	3204      	adds	r2, #4
+
+0800039a <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 800039a:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 800039c:	d3fb      	bcc.n	8000396 <FillZerobss>
+
+/* Call static constructors */
+  bl __libc_init_array
+ 800039e:	f000 f811 	bl	80003c4 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 80003a2:	f7ff ff79 	bl	8000298 <main>
+
+080003a6 <LoopForever>:
+
+LoopForever:
+    b LoopForever
+ 80003a6:	e7fe      	b.n	80003a6 <LoopForever>
+  ldr   r0, =_estack
+ 80003a8:	20018000 	.word	0x20018000
+  ldr r0, =_sdata
+ 80003ac:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 80003b0:	20000000 	.word	0x20000000
+  ldr r2, =_sidata
+ 80003b4:	0800042c 	.word	0x0800042c
+  ldr r2, =_sbss
+ 80003b8:	20000000 	.word	0x20000000
+  ldr r4, =_ebss
+ 80003bc:	20000030 	.word	0x20000030
+
+080003c0 <ADC_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 80003c0:	e7fe      	b.n	80003c0 <ADC_IRQHandler>
+	...
+
+080003c4 <__libc_init_array>:
+ 80003c4:	b570      	push	{r4, r5, r6, lr}
+ 80003c6:	4e0d      	ldr	r6, [pc, #52]	; (80003fc <__libc_init_array+0x38>)
+ 80003c8:	4c0d      	ldr	r4, [pc, #52]	; (8000400 <__libc_init_array+0x3c>)
+ 80003ca:	1ba4      	subs	r4, r4, r6
+ 80003cc:	10a4      	asrs	r4, r4, #2
+ 80003ce:	2500      	movs	r5, #0
+ 80003d0:	42a5      	cmp	r5, r4
+ 80003d2:	d109      	bne.n	80003e8 <__libc_init_array+0x24>
+ 80003d4:	4e0b      	ldr	r6, [pc, #44]	; (8000404 <__libc_init_array+0x40>)
+ 80003d6:	4c0c      	ldr	r4, [pc, #48]	; (8000408 <__libc_init_array+0x44>)
+ 80003d8:	f000 f818 	bl	800040c <_init>
+ 80003dc:	1ba4      	subs	r4, r4, r6
+ 80003de:	10a4      	asrs	r4, r4, #2
+ 80003e0:	2500      	movs	r5, #0
+ 80003e2:	42a5      	cmp	r5, r4
+ 80003e4:	d105      	bne.n	80003f2 <__libc_init_array+0x2e>
+ 80003e6:	bd70      	pop	{r4, r5, r6, pc}
+ 80003e8:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 80003ec:	4798      	blx	r3
+ 80003ee:	3501      	adds	r5, #1
+ 80003f0:	e7ee      	b.n	80003d0 <__libc_init_array+0xc>
+ 80003f2:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 80003f6:	4798      	blx	r3
+ 80003f8:	3501      	adds	r5, #1
+ 80003fa:	e7f2      	b.n	80003e2 <__libc_init_array+0x1e>
+ 80003fc:	08000424 	.word	0x08000424
+ 8000400:	08000424 	.word	0x08000424
+ 8000404:	08000424 	.word	0x08000424
+ 8000408:	08000428 	.word	0x08000428
+
+0800040c <_init>:
+ 800040c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800040e:	bf00      	nop
+ 8000410:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000412:	bc08      	pop	{r3}
+ 8000414:	469e      	mov	lr, r3
+ 8000416:	4770      	bx	lr
+
+08000418 <_fini>:
+ 8000418:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800041a:	bf00      	nop
+ 800041c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800041e:	bc08      	pop	{r3}
+ 8000420:	469e      	mov	lr, r3
+ 8000422:	4770      	bx	lr
