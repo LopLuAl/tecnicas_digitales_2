@@ -1,0 +1,10 @@
+14:19:09 **** Incremental Build of configuration Debug for project tp_leds_freertos ****
+make -j8 all 
+arm-none-eabi-size   tp_leds_freertos.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16832	     24	   9136	  25992	   6588	tp_leds_freertos.elf
+Finished building: default.size.stdout
+ 
+
+14:19:10 Build Finished. 0 errors, 0 warnings. (took 172ms)
+
