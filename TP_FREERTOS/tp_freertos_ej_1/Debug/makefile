@@ -65,8 +65,8 @@ all: main-build
 main-build: tp_freertos_ej_1.elf secondary-outputs
 
 # Tool invocations
-tp_freertos_ej_1.elf: $(OBJS) $(USER_OBJS) E:\SSD\Users\Luciano\Drive\ -\ UTN\Materias\4to\Tecnicas_digitales_II\Workspace\tp_freertos_ej_1\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "tp_freertos_ej_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"E:\SSD\Users\Luciano\Drive - UTN\Materias\4to\Tecnicas_digitales_II\Workspace\tp_freertos_ej_1\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="tp_freertos_ej_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+tp_freertos_ej_1.elf: $(OBJS) $(USER_OBJS) /home/luciano/STM32CubeIDE/workspace_1.6.0/tecnicas_digitales_2/TP_FREERTOS/tp_freertos_ej_1/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "tp_freertos_ej_1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/luciano/STM32CubeIDE/workspace_1.6.0/tecnicas_digitales_2/TP_FREERTOS/tp_freertos_ej_1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="tp_freertos_ej_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

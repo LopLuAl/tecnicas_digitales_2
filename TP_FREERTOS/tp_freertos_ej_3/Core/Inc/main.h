@@ -32,7 +32,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#define LED_1 0
+#define LED_2 1
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

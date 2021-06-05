@@ -103,33 +103,28 @@ void StartDefaultTask(void *argument);
 		}
 	}
 
-void tarea_leds_boton_1(void *p)
+void tarea_leds_boton_1(void *dato_led)
 {
-	int i;
 	for (;;)
 	{
-		for (i = 0; i < 2; i++)
+		if (leer_pulsador(*(uint32_t*)dato_led))
 		{
-			if (leer_pulsador(i))
-			{
-				invertir_led(i);
-			}
+			invertir_led(*(uint32_t*)dato_led);
 		}
+
 		vTaskDelay(LED_TICKS/portTICK_RATE_MS);
 	}
 }
-void tarea_leds_boton_2(void *p)
+void tarea_leds_boton_2(void *dato_led)
 {
-	int i;
 	for (;;)
 	{
-		for (i = 0; i < 2; i++)
+
+		if (leer_pulsador((uint32_t )dato_led))
 		{
-			if (leer_pulsador(i))
-			{
-				invertir_led(i);
-			}
+			invertir_led((uint32_t )dato_led);
 		}
+
 		vTaskDelay(LED_TICKS/portTICK_RATE_MS);
 	}
 }
@@ -203,14 +198,14 @@ int main(void)
   xTaskCreate(tarea_leds_boton_1,
   		  "otroled_1",
   		  configMINIMAL_STACK_SIZE,
-  		  NULL,
+  		  (void *)LED_1,
   		  tskIDLE_PRIORITY+1,
   		  NULL);
 
   xTaskCreate(tarea_leds_boton_2,
   		  "otroled_2",
   		  configMINIMAL_STACK_SIZE,
-  		  NULL,
+		  (void *)LED_2,
   		  tskIDLE_PRIORITY+1,
   		  NULL);
 
