@@ -1,7 +1,7 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=linux
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Cerradura_TD2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:cambia_tareas,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:minios Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:led_blinky Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ledasm Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:siete_segmentos_asm Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:tp_leds_freertos Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:antirrebote_nucleo
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:cambia_tareas,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:minios Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:antirrebote_nucleo,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:siete_segmentos_asm Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:tp_freertos_ej_3 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:tp_leds_freertos Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:tp_freertos_ej_4,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ledasm Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:led_blinky Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Cerradura_TD2
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Cerradura\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Cerradura\ Debug/activeLaunchTarget=null\:---
@@ -10,6 +10,8 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:TPO/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:TPO/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:antirrebote_nucleo/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:antirrebote_nucleo/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:cambia_tareas/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:cambia_tareas/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:led_blinky\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:led_blinky\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ledasm\ Debug/activeLaunchMode=debug
